@@ -1,1 +1,1 @@
-{"appList":["qbittorrent"],"appDetails":[{"name":"qbittorrent","displayName":"qBittorrent","description":"qBittorrent BitTorrent client","isOfficial":true,"logoUrl":"qbittorrent.png"}]}
+{"appList":["dashmachine","qbittorrent"],"appDetails":[{"name":"dashmachine","displayName":"DashMachine","description":"Another web application bookmark dashboard, with fun features.","isOfficial":true,"logoUrl":"dashmachine.png"},{"name":"qbittorrent","displayName":"qBittorrent","description":"qBittorrent BitTorrent client","isOfficial":true,"logoUrl":"qbittorrent.png"}]}
