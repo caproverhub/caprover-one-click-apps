@@ -40,7 +40,7 @@ caproverOneClickApp:
             The qBittorrent project aims to provide an open-source software alternative to µTorrent.
             qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
         end: >-
-            qBittorrent is deployed and available as srv-captain--$$cap_appname:$$cap_webui_port to other apps.
+            qBittorrent is deployed and available as $$cap_appname.
     displayName: qBittorrent
     isOfficial: true
     description: qBittorrent BitTorrent client
