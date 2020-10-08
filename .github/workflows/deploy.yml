@@ -16,4 +16,4 @@ jobs:
         run: chmod +x ./scripts/publish-from-actions.sh
       - run: npm ci && npm run publish
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
