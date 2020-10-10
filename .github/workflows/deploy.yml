@@ -1,4 +1,4 @@
-name: Publish One Click Apps
+name: Publish Apps
 
 on:
   push:

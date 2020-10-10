@@ -1,4 +1,4 @@
-name: Validate One Click Apps
+name: Validate Apps
 
 on:
   push:
