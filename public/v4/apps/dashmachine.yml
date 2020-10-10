@@ -1,7 +1,7 @@
 captainVersion: 4
 services:
     $$cap_appname:
-        image: rmountjoy/dashmachine:$$cap_dashmachine_version
+    image: rmountjoy/dashmachine:$$cap_dashmachine_version
         ports:
             - 5000:5000
         hostname: $$cap_appname.$$cap_root_domain
