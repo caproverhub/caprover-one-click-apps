@@ -9,7 +9,7 @@ services:
             - $$cap_appname-config:/config
 caproverOneClickApp:
     variables:
-        - id: $$cap_timezone
+        - id: $$cap_tz
           label: Timezone
           description: This is the timezone for the application, find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           defaultValue: Europe/Brussels
