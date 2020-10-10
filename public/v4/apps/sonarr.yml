@@ -6,16 +6,15 @@ services:
             TZ: $$cap_tz
             PUID: 1000
             PGID: 1000
-            WEBUI_PORT: $$cap_webui_port
         ports:
-            - $$cap_webui_port:8989
+            - 8989:8989
         hostname: $$cap_appname.$$cap_root_domain
         volumes:
             - $$cap_appname-config:/config
             - $$cap_path_to_tv:/tv
             - $$cap_path_to_downloads:/downloads
         caproverExtra:
-            containerHttpPort: $$cap_webui_port
+            containerHttpPort: 8989
 caproverOneClickApp:
     variables:
         - id: $$cap_sonarr_version
@@ -28,10 +27,6 @@ caproverOneClickApp:
           defaultValue: Europe/Brussels
           description: Get yours from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           validRegex: /.{1,}/
-        - id: $$cap_webui_port
-          label: Sonarr WebUI Port
-          description: The port used to access Sonarr
-          validRegex: /\d/
         - id: $$cap_path_to_downloads
           label: Location of download managers output directory
           description: Location of download managers output directory
