@@ -9,10 +9,10 @@ services:
             - $$cap_appname-config:/config
 caproverOneClickApp:
     variables:
-        - label: Timezone
+        - id: $$cap_timezone
+          label: Timezone
           description: This is the timezone for the application, find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           defaultValue: Europe/Brussels
-          id: $$cap_timezone
         - id: $$cap_heimdall_version
           label: Version Tag
           description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/heimdall/tags
