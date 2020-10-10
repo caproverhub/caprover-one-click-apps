@@ -1,5 +1,7 @@
 ## Repo for CapRover One Click Apps
 
+![Validate One Click Apps](https://github.com/AkgunFatih/caprover-one-click-apps/workflows/Validate%20One%20Click%20Apps/badge.svg?branch=master) ![Publish One Click Apps](https://github.com/AkgunFatih/caprover-one-click-apps/workflows/Publish%20One%20Click%20Apps/badge.svg)
+
 ### How to create a one-click app (as of v1.8.0):
 First, have a look at [this simple example](https://github.com/akgunfatih/caprover-one-click-apps/blob/master/public/v4/apps/privatebin.yml). Now, read on for more details:
 
