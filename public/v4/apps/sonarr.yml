@@ -1,7 +1,7 @@
 captainVersion: 4
 services:
     $$cap_appname:
-        image: linuxserver/docker-sonarr:$$cap_sonarr_version
+        image: linuxserver/sonarr:$$cap_sonarr_version
         environment:
             TZ: $$cap_tz
             PUID: 1000
@@ -21,7 +21,7 @@ caproverOneClickApp:
         - id: $$cap_sonarr_version
           label: Sonarr Version
           defaultValue: preview
-          description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/docker-sonarr/tags
+          description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/sonarr/tags
           validRegex: /^([^\s^\/])+$/
         - id: $$cap_tz
           label: Time Zone
@@ -52,4 +52,4 @@ caproverOneClickApp:
     displayName: Sonarr
     isOfficial: true
     description: Sonarr (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them.
-    documentation: Taken from https://hub.docker.com/r/linuxserver/docker-sonarr.
+    documentation: Taken from https://hub.docker.com/r/linuxserver/sonarr.
