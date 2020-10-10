@@ -4,8 +4,8 @@ services:
         image: linuxserver/sonarr:$$cap_sonarr_version
         environment:
             TZ: $$cap_tz
-            PUID: 1000
-            PGID: 1000
+            PUID: $$cap_puid
+            PGID: $$cap_guid
         ports:
             - 8989:8989
         hostname: $$cap_appname.$$cap_root_domain
@@ -35,6 +35,16 @@ caproverOneClickApp:
           label: Location of TV library on disk
           description: Location of TV library on disk
           validRegex: /\/[^\s-][a-zA-Z0-9_\/-]*[^\/][^\s-]/
+        - id: $$cap_puid
+          label: User ID
+          defaultValue: '1000'
+          description: User ID that the process uses, run (id $user) in your instance to see the id
+          validRegex: /.{1,}/
+        - id: $$cap_guid
+          label: Group ID
+          defaultValue: '1000'
+          description: Group ID that the process uses, run (id $user) in your instance to see the id
+          validRegex: /.{1,}/
     instructions:
         start: >-
             Sonarr (formerly NZBdrone) is a PVR for usenet and bittorrent users.
