@@ -6,6 +6,6 @@
 
 - Login to your CapRover dashboard
 - Go to **apps** and click on **One-Click Apps/Databases** and scrolldown to the bottom
-- Under **3rd party repositories:** copy and paste ***https://apps.caprover.gocloud.fun*** in to the text box
+- Under **3rd party repositories:** copy `https://apps.caprover.gocloud.fun` and paste it in to the text box
 - Click the ***Connect New Repository*** button
 
