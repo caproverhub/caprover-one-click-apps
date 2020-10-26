@@ -7,6 +7,8 @@ services:
             TZ: $$cap_tz
             PUID: $$cap_puid
             PGID: $$cap_guid
+        ports:
+            - $$cap_webui_port:8000
         volumes:
             - $$cap_appname-config:/config
             - $$cap_downloads:/downloads
