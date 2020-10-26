@@ -68,9 +68,6 @@ caproverOneClickApp:
           defaultValue: '10.5.6'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/library/mariadb/tags/
           validRegex: /^([^\s^\/])+$/
-        - id: $$cap_mariadb_rootpasswd
-          label: MariaDB root password
-          description: Super secret root password for MariaDB
         - id: $$cap_mariadb_db
           label: MariaDB Database
           description: Database for Lychee
