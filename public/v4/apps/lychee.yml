@@ -15,7 +15,7 @@ services:
             DB_PORT: '3306'
             DB_DATABASE: $$cap_mariadb_db
             DB_USERNAME: $$cap_mariadb_user
-            DB_PASSWORD: $$cap_mariadb_userpasswd
+            DB_PASSWORD: $$cap_mariadb_password
             STARTUP_DELAY: '30'
         ports:
             - $$cap_webui_port:80
@@ -32,7 +32,7 @@ services:
             MYSQL_ROOT_PASSWORD: $$cap_mariadb_rootpasswd
             MYSQL_DATABASE: $$cap_mariadb_db
             MYSQL_USER: $$cap_mariadb_user
-            MYSQL_PASSWORD: $$cap_mariadb_userpasswd
+            MYSQL_PASSWORD: $$cap_mariadb_password
         volumes:
             - $$cap_appname-db-data:/var/lib/mysql
         restart: unless-stopped
@@ -79,7 +79,7 @@ caproverOneClickApp:
           label: MariaDB User
           description: Database User for Lychee
           defaultValue: 'lychee'
-        - id: $$cap_mariadb_userpasswd
+        - id: $$cap_mariadb_password
           label: MariaDB database user password
           description: Super secret database user password
     instructions:
