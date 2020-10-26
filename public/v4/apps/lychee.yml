@@ -29,7 +29,7 @@ services:
     $$cap_appname-db:
         image: mariadb:$$cap_mariadb_version
         environment:
-            MYSQL_ROOT_PASSWORD: $$cap_mariadb_rootpasswd
+            MYSQL_RANDOM_ROOT_PASSWORD: '1'
             MYSQL_DATABASE: $$cap_mariadb_db
             MYSQL_USER: $$cap_mariadb_user
             MYSQL_PASSWORD: $$cap_mariadb_password
