@@ -7,7 +7,6 @@ services:
             TZ: $$cap_tz
             PUID: $$cap_puid
             PGID: $$cap_guid
-            PASSWORD: $$cap_password
         volumes:
             - $$cap_appname-config:/config
             - $$cap_appname-downloads:/downloads
