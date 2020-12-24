@@ -1,31 +1,28 @@
 captainVersion: 4
 services:
     $$cap_appname:
-        image: linuxserver/duplicati:$$cap_duplicati_version
+        image: ghcr.io/linuxserver/duplicati:$$cap_duplicati_version
         environment:
             TZ: $$cap_tz
             PUID: $$cap_puid
             PGID: $$cap_guid
             CLI_ARGS: $$cap_cli_args
-        ports:
-            - $$cap_webui_port:8200
-        hostname: $$cap_appname.$$cap_root_domain
         volumes:
-            - $$cap_appname-config:/config
-            - $$cap_appname-backups:/backups
-            - $$cap_sourcepath:/source
+            - $$cap_appname-config:/config # Contains all relevant configuration files.
+            - $$cap_appname-backups:/backups # Path to store local backups.
+            - $$cap_sourcepath:/source # Path to source for files to backup.
         caproverExtra:
-            containerHttpPort: $$cap_webui_port
+            containerHttpPort: '8200'
 caproverOneClickApp:
     variables:
         - id: $$cap_tz
           label: Timezone
-          description: This is the timezone for the application, find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+          description: Specify a timezone to use EG Europe/London, find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           defaultValue: Europe/Brussels
         - id: $$cap_duplicati_version
           label: Version Tag
-          description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/duplicati/tags
-          defaultValue: 'latest'
+          description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/duplicati/tags or https://github.com/orgs/linuxserver/packages/container/package/duplicati
+          defaultValue: 'version-v2.0.5.1-2.0.5.1_beta_2020-01-18'
         - id: $$cap_puid
           label: User ID
           defaultValue: '1000'
