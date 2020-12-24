@@ -35,11 +35,6 @@ caproverOneClickApp:
           validRegex: /.{1,}/
         - id: $$cap_sourcepath
           label: Path to source for files to backup.
-        - id: $$cap_webui_port
-          label: Duplicati WebUI Port
-          description: The port used to access Duplicati
-          defaultValue: '8200'
-          validRegex: /\d/
         - id: $$cap_cli_args
           label: Command line arguments
           description: Optionally specify any CLI variables you want to launch the app with
