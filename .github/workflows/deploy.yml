@@ -1,4 +1,4 @@
-name: Publish Apps
+name: Publish One Click Apps
 
 on:
   push:
@@ -6,14 +6,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Make executeable
-        run: chmod +x ./scripts/publish-from-actions.sh
       - run: npm ci && npm run publish
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_PERSONAL_TOKEN: ${{secrets.GITHUB_TOKEN}}
