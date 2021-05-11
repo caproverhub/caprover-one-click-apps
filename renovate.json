@@ -1,0 +1,6 @@
+{
+  "assignees": ["kgnfth"],
+  "extends": [
+    "github>kgnfth/renovate-config"
+  ]
+}
