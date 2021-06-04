@@ -1,6 +1,7 @@
 ## Repo for CapRover One Click Apps
 
-![Validate One Click Apps](https://github.com/kgnfth/caprover-one-click-apps/workflows/Validate%20Apps/badge.svg?branch=master&event=push) ![Publish One Click Apps](https://github.com/kgnfth/caprover-one-click-apps/workflows/Publish%20Apps/badge.svg?branch=master&event=push)
+![Validate One Click Apps](https://github.com/kgnfth/caprover-one-click-apps/actions/workflows/validate_apps.yml/badge.svg?event=push)
+![Publish One Click Apps](https://github.com/kgnfth/caprover-one-click-apps/actions/workflows/deploy.yml/badge.svg?event=push)
 
 ### How to add this repo:
 
