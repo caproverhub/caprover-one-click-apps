@@ -13,10 +13,10 @@ services:
             MYSQL_USER: $$cap_mariadb_user
             MYSQL_PASSWORD: $$cap_mariadb_password
         volumes:
-            - $$cap_appname_storage:/app/storage
-            - $$cap_appname_database:/app/resources/database
-            - $$cap_appname_logs:/app/logs
-            - $$cap_appname_config:/app/config
+            - $$cap_appname-storage:/app/storage
+            - $$cap_appname-database:/app/resources/database
+            - $$cap_appname-logs:/app/logs
+            - $$cap_appname-config:/app/config
     # MariaDB
     $$cap_appname-db:
         image: mariadb:$$cap_mariadb_version
