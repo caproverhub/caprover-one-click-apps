@@ -8,14 +8,6 @@ services:
             STASH_GENERATED: '/generated/'
             STASH_METADATA: '/metadata/'
             STASH_CACHE: '/cache/'
-        ports:
-            - $$cap_webui_port:9999
-        logging:
-            driver: 'json-file'
-            options:
-                max-file: '10'
-                max-size: '2m'
-        hostname: $$cap_appname.$$cap_root_domain
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - $$cap_appname-config:/root/.stash
@@ -24,7 +16,7 @@ services:
             - $$cap_appname-generated:/generated
             - $$path_to_media:/data
         caproverExtra:
-            containerHttpPort: $$cap_webui_port
+            containerHttpPort: 9999
 caproverOneClickApp:
     variables:
         - id: $$cap_stash_version
@@ -37,11 +29,6 @@ caproverOneClickApp:
           defaultValue: Europe/Brussels
           description: Get yours from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           validRegex: /.{1,}/
-        - id: $$cap_webui_port
-          label: Stash WebUI Port
-          defaultValue: 9999
-          description: The port used to access Stash
-          validRegex: /\d/
         - id: $$path_to_media
           label: Path to media folder
           description: Point this at your video collection.
