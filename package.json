@@ -7,18 +7,18 @@
     "formatter-write": "prettier --write './public/**/*.(json|yml)'",
     "build": "rm -rf ./dist/ && mkdir -p dist && node ./scripts/build_one_click_apps.js && node ./scripts/build_one_click_apps_from_v4.js",
     "validate_apps": "node ./scripts/validate_apps.js",
-    "publish": "npm run build && ./scripts/publish-from-actions.sh"
+    "publish": "pnpm run build && ./scripts/publish-from-actions.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kgnfth/caprover-one-click-apps.git"
+    "url": "git+https://github.com/awesomehubio/caprover-one-click-apps.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kgnfth/caprover-one-click-apps/issues"
+    "url": "https://github.com/awesomehubio/caprover-one-click-apps/issues"
   },
-  "homepage": "https://github.com/kgnfth/caprover-one-click-apps",
+  "homepage": "https://github.com/awesomehubio/caprover-one-click-apps",
   "dependencies": {
     "fs-extra": "^10.0.0",
     "gh-pages": "^3.2.3",
