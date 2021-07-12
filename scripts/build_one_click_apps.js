@@ -1,6 +1,5 @@
 /*jshint esversion: 6 */
 const path = require('path')
-const yaml = require('yaml')
 const fs = require('fs-extra')
 
 // Next, for V4:
