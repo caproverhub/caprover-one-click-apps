@@ -15,13 +15,13 @@ jobs:
             matrix:
                 node-version: [14]
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # renovate: tag=v2
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@aa759c6c94d3800c55b8601f21ba4b2371704cb7 # renovate: tag=v2
               with:
                   node-version: ${{ matrix.node-version }}
             - name: Cache .pnpm-store
-              uses: actions/cache@v2
+              uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # renovate: tag=v2
               with:
                   path: ~/.pnpm-store
                   key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
