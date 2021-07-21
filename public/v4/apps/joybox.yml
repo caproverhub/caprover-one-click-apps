@@ -2,6 +2,9 @@ captainVersion: 4
 services:
     $$cap_appname:
         image: ghcr.io/joyboxxx/joybox:$$cap_joybox_version
+        environment:
+            default-access: $$cap_default_access
+            passphrase: $$cap_access_password
         volumes:
             - $$cap_appname-data:/app/data
 caproverOneClickApp:
@@ -10,7 +13,18 @@ caproverOneClickApp:
           label: JoyBox Version
           defaultValue: be5a97aef508b1e74000ddb8c547710cd30c8a11
           description: Check out their Docker page for the valid tags https://github.com/joyboxxx/joybox/pkgs/container/joybox
-          validRegex: /^([^\s^\/])+$/
+        - id: $$cap_default_access
+          label: Default access type
+          description: >-
+              Choose between FULL_ACCESS or VIEW_ACCESS.
+              FULL_ACCESS = No password is needed, everyone can delete, add sources.
+              VIEW_ACCESS = password required to add, delete sources.
+              VIEW_ACCESS is reccomended.
+          defaultValue: VIEW_ACCESS
+        - id: $$cap_access_password
+          label: Access password
+          defaultValue: $$cap_gen_random_hex(10)
+          description: only required if u use VIEW_ACCESS
     instructions:
         start: >-
             Chaturbate Webcam Recorder
