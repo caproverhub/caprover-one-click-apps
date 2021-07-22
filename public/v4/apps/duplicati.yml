@@ -22,7 +22,7 @@ caproverOneClickApp:
         - id: $$cap_duplicati_version
           label: Version Tag
           description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/duplicati/tags or https://github.com/orgs/linuxserver/packages/container/package/duplicati
-          defaultValue: 'version-v2.0.5.1-2.0.5.1_beta_2020-01-18'
+          defaultValue: 'version-v2.0.6.3-2.0.6.3_beta_2021-06-17'
         - id: $$cap_puid
           label: User ID
           defaultValue: '1000'
