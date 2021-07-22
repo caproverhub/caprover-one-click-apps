@@ -17,14 +17,10 @@ services:
             DB_USERNAME: $$cap_mariadb_user
             DB_PASSWORD: $$cap_mariadb_password
             STARTUP_DELAY: '30'
-        ports:
-            - $$cap_webui_port:80
         volumes:
             - $$cap_appname-conf:/conf
             - $$cap_appname-uploads:/uploads
             - $$cap_appname-sym:/sym
-        caproverExtra:
-            containerHttpPort: '80'
     # MariaDB
     $$cap_appname-db:
         image: mariadb:$$cap_mariadb_version

@@ -6,8 +6,6 @@ services:
             TZ: $$cap_tz
             PUID: $$cap_puid
             PGID: $$cap_guid
-        ports:
-            - 8989:8989
         hostname: $$cap_appname.$$cap_root_domain
         volumes:
             - $$cap_appname-config:/config

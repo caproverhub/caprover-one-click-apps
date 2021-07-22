@@ -8,12 +8,8 @@ services:
             PUID: $$cap_puid
             PGID: $$cap_guid
             PASSWORD: $$cap_password
-        ports:
-            - $$cap_webui_port:80
         volumes:
             - $$cap_appname-config:/config
-        caproverExtra:
-            containerHttpPort: '80'
 caproverOneClickApp:
     variables:
         - id: $$cap_tz
