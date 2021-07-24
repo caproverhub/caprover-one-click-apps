@@ -1,0 +1,93 @@
+captainVersion: 4
+
+services:
+    # Client
+    $$cap_appname:
+        image: szurubooru/client:$$cap_szuru_version
+        environment:
+            BACKEND_HOST: srv-captain--$$cap_appname-server
+            BASE_URL: https://$$cap_appname.$$cap_root_domain/
+        volumes:
+            - $$cap_appname-data:/data
+        depends_on:
+            - $$cap_appname-server
+
+    # Server
+    $$cap_appname-server:
+        image: szurubooru/server:$$cap_szuru_version
+        environment:
+            POSTGRES_DB: $$cap_db_name
+            POSTGRES_USER: $$cap_db_user
+            POSTGRES_PASSWORD: $$cap_db_pass
+            POSTGRES_HOST: srv-captain--$$cap_appname-db
+            POSTGRES_PORT: 5432
+        volumes:
+            - $$cap_appname-data:/data
+            - $$cap_appname-config:/opt/app
+        depends_on:
+            - $$cap_appname-db
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+
+    # Database
+    $$cap_appname-db:
+        image: postgres:12-alpine
+        environment:
+            POSTGRES_USER: $$cap_db_user
+            POSTGRES_DB: $$cap_db_name
+            POSTGRES_PASSWORD: $$cap_db_pass
+        volumes:
+            - $$cap_appname-db-data:/var/lib/postgresql/data
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+
+caproverOneClickApp:
+    variables:
+        - id: $$cap_szuru_version
+          label: Szurubooru Client Version
+          defaultValue: '2.5-edge'
+          description: Checkout their docker page for the valid tags https://hub.docker.com/r/szurubooru/client/tags
+        - id: $$cap_db_user
+          label: Postgres database user
+          defaultValue: szurubooru
+          description: Enter a user for database
+        - id: $$cap_db_name
+          label: Postgres database name
+          defaultValue: szurubooru
+          description: Enter a databse name
+        - id: $$cap_db_pass
+          label: Postgres database password
+          defaultValue: $$cap_gen_random_hex(24)
+          description: Enter database password
+    instructions:
+        start: |-
+            Image board engine, Danbooru-style.
+        end: |-
+            !!! IMPORTANT !!!: KEEP A NOTE OF THE INSTRUCTIONS :!!! IMPORTANT !!!
+
+            Hi, it's time to edit the app config file,
+            for this, you need ssh access to caprover server with sudo access, or just use root access.
+            For this purpose, i am using a user with sudo access.
+
+            From terminal run these step by step.
+
+            --------------------------------------------------------------------
+            Copy config.yml.dist to config.yml
+            this is a one-line command!
+            1. sudo cp /var/lib/docker/volumes/captain--$$cap_appname-config/_data/config.yaml.dist /var/lib/docker/volumes/captain--$$cap_appname-config/_data/config.yaml
+
+            --------------------------------------------------------------------
+            Edit the config file with Nano or any other editor:
+            2. sudo nano /var/lib/docker/volumes/captain--$$cap_appname-config/_data/config.yaml
+
+            Pay extra attention to these fields:
+
+            secret
+
+
+            --------------------------------------------------------------------
+            3. Now in caprover go to $$cap_appname-server and hit the (Save & Update) button
+    displayName: Szurubooru
+    isOfficial: true
+    description: Image board engine, Danbooru-style.
+    documentation: Taken from https://github.com/rr-/szurubooru/blob/master/doc/INSTALL.md.
