@@ -59,7 +59,7 @@ caproverOneClickApp:
 
         end: |-
             Aaaand you're done! 😄
-            Your service is available at http://$$cap_appname_$$cap_root_domain
+            Your service is available at http://$$cap_appname.$$cap_root_domain
 
             The default user/pass = abc/abc
     displayName: Webtop
