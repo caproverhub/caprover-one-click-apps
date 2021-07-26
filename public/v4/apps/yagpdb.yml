@@ -20,7 +20,6 @@ services:
         volumes:
             - $$cap_appname-soundboard:/app/soundboard
         caproverExtra:
-            containerHttpPort: '80'
             dockerfileLines:
                 - FROM teyker/yagpdb:$$cap_yagpdb_version
                 - CMD ["/app/yagpdb", "-all", "-pa", "-exthttps=true", "-https=false"]
@@ -58,31 +57,33 @@ caproverOneClickApp:
           validRegex: /^[^\@]{12,}$/
 
         - id: $$cap_yagpdb_bot_owner
-          defaultValue: Insert owner id here
-          label: YAGPDB owner ID
+          defaultValue: Insert your server owner id here
+          label: Discord server owner ID
           description: https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-
 
         - id: $$cap_yagpdb_bot_client_id
           defaultValue: Insert bot OAuth2 client id here
-          label: YAGPDB bot OAuth2 client ID
+          label: Discord bot OAuth2 client ID
           description: https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
 
         - id: $$cap_yagpdb_bot_client_secret
           defaultValue: Insert bot OAuth2 client secret here
-          label: YAGPDB bot OAuth2 client secret
+          label: Discord bot OAuth2 client secret
           description: https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
 
         - id: $$cap_yagpdb_bot_token
           defaultValue: Insert bot token here
-          label: YAGPDB bot token
+          label: Discord bot token
           description: https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
     instructions:
         start: >-
-            Yet another general purpose discord bot
+            Yet another general purpose discord bot.
+
+            This is the best opensource discord bot ever made!
         end: >-
             Aaaand you're done! 😄
             Your service is available at http://$$cap_appname.$$cap_root_domain
     displayName: Yagpdb
     isOfficial: true
     description: Yet another general purpose discord bot
-    documentation: Taken from https://dev.azure.com/brutalbot/_git/yagpdb-public
+    documentation: Taken from https://yagpdb.xyz/
