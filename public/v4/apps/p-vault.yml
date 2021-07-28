@@ -1,6 +1,6 @@
 captainVersion: 4
 services:
-    # Porn Vault
+    # Porn Vaultt
     $$cap_appname:
         image: boi12321/porn-vault:$$cap_vault_version
         depends_on:
