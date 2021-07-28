@@ -1,0 +1,10 @@
+pipeline:
+  validate-apps:
+    image: node:14-alpine
+    commands:
+      - yarn global add pnpm
+      - pnpm i
+      - pnpm run validate_app
+      - pnpm run formatter
+    when:
+      event: [pull]
