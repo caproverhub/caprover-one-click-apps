@@ -8,7 +8,7 @@ steps:
   when:
     event:
     - pull_request
-  image: node:14-alpine
+  image: node:16-alpine@sha256:50b33102c307e04f73817dad87cdae145b14782875495ddd950b5a48e4937c70
   commands:
   - yarn global add pnpm
   - pnpm i
