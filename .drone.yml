@@ -1,6 +1,7 @@
+---
 kind: pipeline
 type: docker
-name: validate-apps
+name: default
 
 steps:
  - name: validate-apps
@@ -11,4 +12,5 @@ steps:
      - pnpm run validate_app
      - pnpm run formatter
    when:
-     event: [pull]
+     event:
+      - pull_request
