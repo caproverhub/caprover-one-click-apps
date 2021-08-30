@@ -1,5 +1,6 @@
 {
   "extends": [
-    "github>kgnfth/renovate-config"
+    "github>kgnfth/renovate-config",
+    ":dependencyDashboard"
   ]
 }
