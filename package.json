@@ -22,7 +22,7 @@
   "dependencies": {
     "fs-extra": "^10.0.0",
     "gh-pages": "^3.2.3",
-    "prettier": "^2.3.2",
+    "prettier": "^2.4.0",
     "yaml": "^1.10.2"
   }
 }
