@@ -17,7 +17,7 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             - name: Cache .pnpm-store
-              uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # renovate: tag=v2
+              uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # renovate: tag=v2
               with:
                   path: ~/.pnpm-store
                   key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
