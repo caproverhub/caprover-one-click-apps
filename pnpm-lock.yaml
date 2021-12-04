@@ -3,13 +3,13 @@ lockfileVersion: 5.3
 specifiers:
   fs-extra: ^10.0.0
   gh-pages: ^3.2.3
-  prettier: ^2.5.0
+  prettier: ^2.5.1
   yaml: ^1.10.2
 
 dependencies:
   fs-extra: 10.0.0
   gh-pages: 3.2.3
-  prettier: 2.5.0
+  prettier: 2.5.1
   yaml: 1.10.2
 
 packages:
@@ -270,8 +270,8 @@ packages:
       find-up: 4.1.0
     dev: false
 
-  /prettier/2.5.0:
-    resolution: {integrity: sha512-FM/zAKgWTxj40rH03VxzIPdXmj39SwSjwG0heUcNFwI+EMZJnY93yAiKXM3dObIKAM5TA88werc8T/EwhB45eg==}
+  /prettier/2.5.1:
+    resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: false
