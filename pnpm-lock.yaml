@@ -1,13 +1,13 @@
 lockfileVersion: 5.3
 
 specifiers:
-  fs-extra: ^10.0.0
+  fs-extra: ^10.0.1
   gh-pages: ^3.2.3
   prettier: ^2.5.1
   yaml: ^1.10.2
 
 dependencies:
-  fs-extra: 10.0.0
+  fs-extra: 10.0.1
   gh-pages: 3.2.3
   prettier: 2.5.1
   yaml: 1.10.2
@@ -95,8 +95,8 @@ packages:
       path-exists: 4.0.0
     dev: false
 
-  /fs-extra/10.0.0:
-    resolution: {integrity: sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==}
+  /fs-extra/10.0.1:
+    resolution: {integrity: sha512-NbdoVMZso2Lsrn/QwLXOy6rm0ufY2zEOKCDzJR/0kBsb0E6qed0P3iYK+Ath3BfvXEeu4JhEtXLgILx5psUfag==}
     engines: {node: '>=12'}
     dependencies:
       graceful-fs: 4.2.6
