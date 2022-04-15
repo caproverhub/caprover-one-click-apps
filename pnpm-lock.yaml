@@ -4,13 +4,13 @@ specifiers:
   fs-extra: ^10.0.1
   gh-pages: ^3.2.3
   prettier: ^2.6.2
-  yaml: ^2.0.0
+  yaml: ^2.0.1
 
 dependencies:
   fs-extra: 10.0.1
   gh-pages: 3.2.3
   prettier: 2.6.2
-  yaml: 2.0.0
+  yaml: 2.0.1
 
 packages:
 
@@ -309,7 +309,7 @@ packages:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
     dev: false
 
-  /yaml/2.0.0:
-    resolution: {integrity: sha512-JbfdlHKGP2Ik9IHylzWlGd4pPK++EU46/IxMykphS2ZKw7a7h+dHNmcXObLgpRDriBY+rpWslldikckX8oruWQ==}
+  /yaml/2.0.1:
+    resolution: {integrity: sha512-1NpAYQ3wjzIlMs0mgdBmYzLkFgWBIWrzYVDYfrixhoFNNgJ444/jT2kUT2sicRbJES3oQYRZugjB6Ro8SjKeFg==}
     engines: {node: '>= 14'}
     dev: false
