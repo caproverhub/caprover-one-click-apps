@@ -3,15 +3,10 @@ services:
     $$cap_appname:
         restart: on-failure
         image: ghcr.io/nsarrazin/serge:$$cap_myapp_version
-        build:
-            context: .
-            dockerfile: Dockerfile
         volumes:
             - '$$cap_appname-db:/data/db'
             - '$$cap_appname-weights:/usr/src/app/weights/'
             - '/etc/localtime:/etc/localtime:ro'
-        ports:
-            - '8008:8008'
         caproverExtra:
             containerHttpPort: '8008'
 volumes:
