@@ -20,10 +20,10 @@ volumes:
 caproverOneClickApp:
     variables:
     - id: '$$cap_myapp_version'
-        label: Serge version
-        defaultValue: '0.0.3'
-        description: Check out their GitHub page for the valid tags https://github.com/nsarrazin/serge/pkgs/container/serge
-        validRegex: '/.{1,}/'
+      label: Serge version
+      defaultValue: '0.0.3'
+      description: Check out their GitHub page for the valid tags https://github.com/nsarrazin/serge/pkgs/container/serge
+      validRegex: '/.{1,}/'
     instructions:
         start: |-
             A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
