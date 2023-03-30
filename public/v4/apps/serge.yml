@@ -34,4 +34,4 @@ caproverOneClickApp:
   isOfficial: false ## Only if all images used here are official or from a trusted source.
   description: A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
   documentation: This docker-compose is taken from https://github.com/nsarrazin/serge
-
+  
