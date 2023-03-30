@@ -1,0 +1,37 @@
+captainVersion: 4
+services:
+  $$cap_appname:
+    restart: on-failure
+    image: ghcr.io/nsarrazin/serge:$$cap_myapp_version
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '$$cap_appname-db:/data/db'
+      - '$$cap_appname-weights:/usr/src/app/weights/'
+      - '/etc/localtime:/etc/localtime:ro'
+    ports:
+      - '8008:8008'
+    caproverExtra:
+        containerHttpPort: '8008'
+volumes:
+  $$cap_appname-db:
+  $$cap_appname-weights:
+caproverOneClickApp:
+  variables:
+  - id: '$$cap_myapp_version'
+    label: Serge version
+    defaultValue: '0.0.3'
+    description: Check out their GitHub page for the valid tags https://github.com/nsarrazin/serge/pkgs/container/serge
+    validRegex: '/.{1,}/'
+  instructions:
+      start: |-
+          A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
+          Prefer CPU with AVX2 enable: `lscpu | grep avx`
+      end: |-
+          Done! 🚀
+  displayName: Serge LLaMa (AI)
+  isOfficial: false ## Only if all images used here are official or from a trusted source.
+  description: A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
+  documentation: This docker-compose is taken from https://github.com/nsarrazin/serge
+
