@@ -1,0 +1,75 @@
+captainVersion: 4
+services:
+    # Vaultwarden
+    $$cap_appname:
+        image: vaultwarden/server:$$cap_vaultwarden_version
+        environment:
+            DOMAIN: https://$$cap_appname.$$cap_root_domain
+            WEBSOCKET_ENABLED: true
+            SIGNUPS_ALLOWED: $$cap_register_enabled
+            ADMIN_TOKEN: $$cap_admin_token
+            DATABASE_URL: mysql://$$cap_mariadb_username:$$cap_mariadb_password@srv-captain--$$cap_appname-mariadb/$$cap_mariadb_name
+            RUST_BACKTRACE: 1
+        volumes:
+            - $$cap_appname-data:/data
+    # MariaDB
+    $$cap_appname-mariadb:
+        image: mariadb:$$cap_mariadb_version
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: '1'
+            MYSQL_DATABASE: $$cap_mariadb_name
+            MYSQL_USER: $$cap_mariadb_username
+            MYSQL_PASSWORD: $$cap_mariadb_password
+        volumes:
+            - $$cap_appname-mariadb-data:/var/lib/mysql
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+caproverOneClickApp:
+    variables:
+        - id: $$cap_vaultwarden_version
+          label: vaultwarden Version
+          defaultValue: 1.28.1
+          description: Check out their Docker page for the valid tags https://hub.docker.com/r/vaultwarden/server/tags
+          validRegex: /^([^\s^\/])+$/
+        - id: $$cap_register_enabled
+          label: enabled open registration
+          defaultValue: true
+          description: If field is true, all visitors can create an account. If false, only the administrator can invite other users.
+          validRegex: /^(true|false)$/
+        - id: $$cap_admin_token
+          label: admin password
+          defaultValue:
+          description: this password enables the admin zone on /admin. If you let this password empty, the admin interface will be disabled and it will be the best safety option.
+        - id: $$cap_mariadb_version
+          label: Database | Version
+          description: MariaDB version. Check out their valid tags at https://hub.docker.com/_/mariadb/tags
+          defaultValue: '10.7.8'
+          validRegex: /.{1,}/
+        - id: $$cap_mariadb_name
+          label: Database | Name
+          description: Name of the MariaDB database.
+          defaultValue: vaultwarden
+          validRegex: /^([^\s^\/])+$/
+        - id: $$cap_mariadb_username
+          label: Database | User Name
+          description: Name of the MariaDB user.
+          defaultValue: vaultwarden
+          validRegex: /^([^\s^\/])+$/
+        - id: $$cap_mariadb_password
+          label: Database | User Password
+          description: Password of the MariaDB user.
+          defaultValue: $$cap_gen_random_hex(16)
+          validRegex: /^([^\s^\/])+$/
+    instructions:
+        start: >-
+            Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs
+        end: >-
+            Vaultwarden is deployed and available as $$cap_appname. Please give it a few minutes to boot, otherwise you will see a 502 error (even if the logs say it's working).
+
+            Please activate https and https redirect otherwise you will have an error on account creation. You need to enable websocket too.
+
+            If you enabled the admin token please go to https://$$cap_appname.$$cap_root_domain/admin to begin
+    displayName: vaultwarden
+    isOfficial: true
+    description: Alternative fully featured lightweight rust implementation of the Bitwarden server API.
+    documentation: Taken from https://hub.docker.com/r/vaultwarden/server
