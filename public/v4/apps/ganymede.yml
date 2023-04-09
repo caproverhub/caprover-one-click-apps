@@ -1,0 +1,88 @@
+captainVersion: 4
+services:
+    # Ganymede Frontend
+    $$cap_appname:
+        image: ghcr.io/zibbp/ganymede-frontend:$$cap_ganymede_version
+        environment:
+            API_URL: https://$$cap_appname-api.$$cap_root_domain # Points to the API service
+            SHOW_SSO_LOGIN_BUTTON: 'true' # show/hide SSO login button on login page
+            FORCE_SSO_AUTH: 'false' # force SSO auth for all users (bypasses login page and redirects to SSO)
+            REQUIRE_LOGIN: 'false' # require login to view videos
+        caproverExtra:
+            containerHttpPort: 3000
+    # Ganymede API
+    $$cap_appname-api:
+        image: ghcr.io/zibbp/ganymede:$$cap_ganymede_api_version
+        environment:
+            DB_HOST: srv-captain--$$cap_appname-db
+            DB_USER: $$cap_db_user
+            DB_PASS: $$cap_db_pass
+            DB_NAME: $$cap_db_name
+            DB_PORT: 5432
+            DB_SSL: disable
+            JWT_SECRET: $$cap_jwt_secret
+            JWT_REFRESH_SECRET: $$cap_refresh_jwt_secret
+            TWITCH_CLIENT_ID: $$cap_twitch_client_id
+            TWITCH_CLIENT_SECRET: $$cap_twitch_client_secret
+            FRONTEND_HOST: https://$$cap_appname.$$cap_root_domain
+        volumes:
+            - $$cap_appname-vods:/vods
+            - $$cap_appname-logs:/logs
+            - $$cap_appname-data:/data
+        caproverExtra:
+            containerHttpPort: 4000
+    # Postgres
+    $$cap_appname-db:
+        image: postgres:12-alpine
+        environment:
+            POSTGRES_USER: $$cap_db_user
+            POSTGRES_DB: $$cap_db_name
+            POSTGRES_PASSWORD: $$cap_db_pass
+        volumes:
+            - $$cap_appname-db-data:/var/lib/postgresql/data
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+caproverOneClickApp:
+    variables:
+        - id: $$cap_ganymede_version
+          label: Ganymede frontend Version
+          defaultValue: v1.2.7
+          description: Checkout their docker page for the valid tags https://github.com/Zibbp/ganymede/pkgs/container/ganymede
+        - id: $$cap_ganymede_api_version
+          label: Ganymede API Version
+          defaultValue: v1.2.11
+          description: Checkout their docker page for the valid tags https://github.com/Zibbp/ganymede/pkgs/container/ganymede
+        - id: $$cap_db_user
+          label: Postgres database user
+          defaultValue: ganymede
+          description: Enter a user for database
+        - id: $$cap_db_name
+          label: Postgres database name
+          defaultValue: ganymede_db
+          description: Enter a databse name
+        - id: $$cap_db_pass
+          label: Postgres database password
+          defaultValue: $$cap_gen_random_hex(24)
+          description: Enter database password
+        - id: $$cap_jwt_secret
+          label: Secret for JWT tokens. This should be a long random string.
+          defaultValue: $$cap_gen_random_hex(24)
+          description: JWT secret token
+        - id: $$cap_refresh_jwt_secret
+          label: Secret for JWT refresh tokens. This should be a long random string.
+          defaultValue: $$cap_gen_random_hex(24)
+          description: JWT secret refresh token
+        - id: $$cap_twitch_client_id
+          label: Twitch application client ID.
+        - id: $$cap_twitch_client_secret
+          label: Twitch application client secret.
+    instructions:
+        start: >-
+            Twitch VOD and Live Stream archiving platform. Includes a rendered and real-time chat for each archive.
+        end: >-
+            Aaaand you're done! 😄
+            Your service is available at http://$$cap_appname.$$cap_root_domain
+    displayName: Ganymede
+    isOfficial: true
+    description: https://github.com/Zibbp/ganymede
+    documentation: Taken from https://github.com/milesmcc/shynet.
