@@ -17,9 +17,9 @@ caproverOneClickApp:
         start: >-
             A highly customizable homepage (or startpage / application dashboard) with Docker and service API integrations.
         end: >-
-            Dashy has been successfully deployed!
+            Homepage has been successfully deployed!
             You can access the application at `http://$$cap_appname.$$cap_root_domain`.
-    displayName: dashy
+    displayName: Homepage
     isOfficial: true
     description: A modern, secure, highly customizable application dashboard with integrations for more than 25 services and translations for over 15 languages. Easily configured via YAML files.
     documentation: Taken from https://github.com/benphelps/homepage

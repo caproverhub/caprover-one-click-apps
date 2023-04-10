@@ -47,7 +47,7 @@ caproverOneClickApp:
         - id: $$cap_ganymede_version
           label: Ganymede frontend Version
           defaultValue: v1.2.7
-          description: Checkout their docker page for the valid tags https://github.com/Zibbp/ganymede/pkgs/container/ganymede
+          description: Checkout their docker page for the valid tags https://github.com/Zibbp/ganymede-frontend/pkgs/container/ganymede-frontend
         - id: $$cap_ganymede_api_version
           label: Ganymede API Version
           defaultValue: v1.2.11
@@ -84,5 +84,5 @@ caproverOneClickApp:
             Your service is available at http://$$cap_appname.$$cap_root_domain
     displayName: Ganymede
     isOfficial: true
-    description: https://github.com/Zibbp/ganymede
-    documentation: Taken from https://github.com/milesmcc/shynet.
+    description: Twitch VOD and Stream archiving platform with a rendered chat. Files are saved in a friendly format allowing for use without Ganymede.
+    documentation: Taken from https://github.com/Zibbp/ganymede.
