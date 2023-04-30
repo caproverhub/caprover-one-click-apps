@@ -9,11 +9,11 @@ services:
         environment:
             TA_HOST: https://$$cap_appname.$$cap_root_domain
             TA_USERNAME: $$ta_username
-            TA_PASSWORD: $$ta_password 
+            TA_PASSWORD: $$ta_password
             ES_URL: http://srv-captain--$$cap_appname-elasticsearch:9200
             REDIS_HOST: srv-captain--$$cap_appname-redis
-            ELASTIC_PASSWORD: $$es_password 
-            TZ: $$cap_tz   
+            ELASTIC_PASSWORD: $$es_password
+            TZ: $$cap_tz
         volumes:
             - $$cap_appname-cache:/cache
             - $$path_to_videos:/youtube
@@ -35,7 +35,7 @@ services:
             - $$cap_appname-elasticsearch-data:/usr/share/elasticsearch/data
         environment:
             ELASTIC_PASSWORD: $$es_password
-            ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+            ES_JAVA_OPTS: '-Xms512m -Xmx512m'
             xpack.security.enabled: true
             discovery.type: single-node
         caproverExtra:
