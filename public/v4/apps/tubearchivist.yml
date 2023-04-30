@@ -1,0 +1,92 @@
+captainVersion: 4
+services:
+    # TubeArchivist
+    $$cap_appname:
+        image: bbilly1/tubearchivist:$$cap_tube_version
+        depends_on:
+            - $$cap_appname-redis
+            - $$cap_appname-elasticsearch
+        environment:
+            TA_HOST: https://$$cap_appname.$$cap_root_domain
+            TA_USERNAME: $$ta_username
+            TA_PASSWORD: $$ta_password 
+            ES_URL: http://srv-captain--$$cap_appname-elasticsearch:9200
+            REDIS_HOST: srv-captain--$$cap_appname-redis
+            ELASTIC_PASSWORD: $$es_password 
+            TZ: $$cap_tz   
+        volumes:
+            - $$cap_appname-cache:/cache
+            - $$path_to_videos:/youtube
+        caproverExtra:
+            containerHttpPort: 8000
+
+    # Redis
+    $$cap_appname-redis:
+        image: redis:$$cap_redis_version
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+        volumes:
+            - $$cap_appname-redis:/data
+
+    # Elastic
+    $$cap_appname-elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:$$cap_elasticsearch_version
+        volumes:
+            - $$cap_appname-elasticsearch-data:/usr/share/elasticsearch/data
+        environment:
+            ELASTIC_PASSWORD: $$es_password
+            ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+            xpack.security.enabled: true
+            discovery.type: single-node
+        caproverExtra:
+            containerHttpPort: 9200
+caproverOneClickApp:
+    variables:
+        - id: $$cap_tube_version
+          label: Tubearchivist Version
+          defaultValue: v0.3.5
+          description: Check out their Docker page for the valid tags https://hub.docker.com/r/bbilly1/tubearchivist/tags
+
+        - id: $$ta_username
+          label: TubeArchivist username
+
+        - id: $$ta_password
+          label: TubeArchivist password
+
+        - id: $$path_to_videos
+          label: Path to videos storage folder
+          description: Point this at your video collection where TA will store the videos.
+
+        - id: $$cap_redis_version
+          label: Cache | Version
+          description: Redis version. Check out their valid tags at https://hub.docker.com/_/redis/tags
+          defaultValue: '7.0-alpine'
+
+        - id: $$cap_elasticsearch_version
+          label: 'Elasticsearch Version Tag '
+          description: 'Check out the releases overview: https://www.elastic.co/de/downloads/elasticsearch'
+          defaultValue: 7.13.4
+
+        - id: $$es_password
+          label: Elasticsearch password
+
+        - id: $$cap_tz
+          label: Timezone
+          description: This is the timezone for the application, find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+          defaultValue: Europe/Brussels
+
+    instructions:
+        start: |-
+            Once your YouTube video collection grows, it becomes hard to search and find a specific video. That's where Tube Archivist comes in: By indexing your video collection with metadata from YouTube, you can organize, search and enjoy your archived YouTube videos without hassle offline through a convenient web interface. THis includes:  
+            * Subscribe to your favorite YouTube channels
+            * Download Videos using **yt-dlp**
+            * Index and make videos searchable
+            * Play videos
+            * Keep track of viewed and unviewed videos
+        end: |-
+            TubeArchivist is deployed.
+            Your service is available at http://$$cap_appname.$$cap_root_domain
+    displayName: TubeArchivist
+    isOfficial: true
+    description: Your self hosted YouTube media server
+    documentation: Taken from https://github.com/tubearchivist/tubearchivist
