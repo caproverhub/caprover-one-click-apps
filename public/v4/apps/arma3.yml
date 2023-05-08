@@ -1,11 +1,7 @@
 captainVersion: 4
 services:
     $$cap_appname:
-        build: .
-        image: ghcr.io/brettmayson/arma3server/arma3server
-        platform: linux/amd64
-        container_name: arma3
-        network_mode: host
+        image: ghcr.io/brettmayson/arma3server/arma3server:$$cap_version
         volumes:
             - '$$cap_appname-missions:/arma3/mpmissions'
             - '$$cap_appname-configs:/arma3/configs'
@@ -28,7 +24,6 @@ services:
             STEAM_BRANCH_PASSWORD: $$cap_branchPassword
             STEAM_USER: $$cap_steamUser
             STEAM_PASSWORD: $$cap_steamPassword
-        restart: unless-stopped
         ports:
             - $$cap_A3port:2302
             - $$cap_SteamQuery:2303
@@ -39,6 +34,10 @@ services:
             notExposeAsWebApp: 'true'
 caproverOneClickApp:
     variables:
+        - id: $$cap_version
+          label: Arma3Server version
+          defaultValue: 'latest'
+          description: Checkout their docker page for the valid tags https://github.com/BrettMayson/Arma3Server/pkgs/container/Arma3Server%2Farma3server/versions?filters%5Bversion_type%5D=tagged
         - label: Binary
           description: Arma 3 server binary to use
           defaultValue: ./arma3server_x64
