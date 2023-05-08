@@ -4,7 +4,6 @@ services:
         depends_on:
             - $$cap_appname-mariadb
         image: nmtan/chevereto:$$cap_chevereto_version
-        restart: 'always'
         environment:
             TZ: $$cap_tz
             PUID: $$cap_puid
@@ -27,7 +26,6 @@ services:
             MYSQL_PASSWORD: $$cap_mariadb-pass
         volumes:
             - $$cap_appname-mariadb-data:/var/lib/mysql
-        restart: unless-stopped
         caproverExtra:
             notExposeAsWebApp: 'true'
 caproverOneClickApp:

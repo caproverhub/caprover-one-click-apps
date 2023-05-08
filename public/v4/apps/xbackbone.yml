@@ -3,7 +3,6 @@ services:
     # XBackBone
     $$cap_appname:
         image: pe46dro/xbackbone-docker:$$cap_xbackbone_version
-        restart: always
         environment:
             URL: https://$$cap_appname.$$cap_root_domain
             PHP_UPLOAD_MAX_FILESIZE: $$cap_xbackbone_upload_size
@@ -27,7 +26,6 @@ services:
             MYSQL_PASSWORD: $$cap_mariadb_password
         volumes:
             - $$cap_appname-db-data:/var/lib/mysql
-        restart: unless-stopped
         caproverExtra:
             notExposeAsWebApp: 'true'
 caproverOneClickApp:

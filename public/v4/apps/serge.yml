@@ -1,7 +1,6 @@
 captainVersion: 4
 services:
     $$cap_appname:
-        restart: on-failure
         image: ghcr.io/nsarrazin/serge:$$cap_myapp_version
         volumes:
             - '$$cap_appname-db:/data/db'
@@ -9,9 +8,9 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         caproverExtra:
             containerHttpPort: '8008'
-volumes:
-    $$cap_appname-db:
-    $$cap_appname-weights:
+    volumes:
+        $$cap_appname-db:
+        $$cap_appname-weights:
 caproverOneClickApp:
     variables:
         - id: '$$cap_myapp_version'

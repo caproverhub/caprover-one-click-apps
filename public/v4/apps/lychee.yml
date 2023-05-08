@@ -5,7 +5,6 @@ services:
         depends_on:
             - $$cap_appname-db
         image: lycheeorg/lychee:$$cap_lychee_version
-        restart: unless-stopped
         environment:
             TZ: $$cap_tz
             PUID: $$cap_puid
@@ -31,7 +30,6 @@ services:
             MYSQL_PASSWORD: $$cap_mariadb_password
         volumes:
             - $$cap_appname-db-data:/var/lib/mysql
-        restart: unless-stopped
         caproverExtra:
             notExposeAsWebApp: 'true'
 caproverOneClickApp:

@@ -2,7 +2,6 @@ captainVersion: 4
 services:
     $$cap_appname:
         image: linuxserver/librespeed:$$cap_librespeed_version
-        restart: always
         environment:
             TZ: $$cap_tz
             PUID: $$cap_puid

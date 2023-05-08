@@ -28,7 +28,6 @@ services:
             MYSQL_PASSWORD: $$cap_mariadb_password
         volumes:
             - $$cap_appname-mariadb-data:/var/lib/mysql
-        restart: unless-stopped
         caproverExtra:
             notExposeAsWebApp: 'true'
     # Redis

@@ -3,7 +3,6 @@ services:
     # Webtop
     $$cap_appname:
         image: ghcr.io/linuxserver/webtop:$$cap_webtop_version
-        restart: unless-stopped
         environment:
             TZ: $$cap_tz
             PUID: $$cap_puid

@@ -3,7 +3,6 @@ services:
     # Metube
     $$cap_appname:
         image: alexta69/metube:$$cap_metube_version
-        restart: always
         volumes:
             - $$cap_appname-downloads:/downloads
         caproverExtra:

@@ -5,7 +5,6 @@ services:
         depends_on:
             - $$cap_appname-db
         image: viktorstrate/photoview:$$cap_photoview_version
-        restart: unless-stopped
         environment:
             MYSQL_URL: $$cap_mariadb_user:$$cap_mariadb_password@tcp(srv-captain--$$cap_appname-db)/$$cap_mariadb_db
             API_LISTEN_IP: 'srv-captain--$$cap_appname'
@@ -25,7 +24,6 @@ services:
             MYSQL_PASSWORD: $$cap_mariadb_password
         volumes:
             - $$cap_appname-db-data:/var/lib/mysql
-        restart: unless-stopped
         caproverExtra:
             notExposeAsWebApp: 'true'
 caproverOneClickApp:

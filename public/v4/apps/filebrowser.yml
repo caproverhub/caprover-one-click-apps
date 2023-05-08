@@ -4,7 +4,6 @@ services:
         volumes:
             - $$cap_appname-database:/database
             - $$cap_appname-files:/srv
-        restart: always
         environment: {}
         caproverExtra:
             dockerfileLines:

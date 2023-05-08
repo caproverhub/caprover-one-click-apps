@@ -3,7 +3,6 @@ services:
     # Uptime Kuma
     $$cap_appname:
         image: louislam/uptime-kuma:$$cap_kuma_version
-        restart: unless-stopped
         volumes:
             - $$cap_appname-data:/app/data
         caproverExtra:

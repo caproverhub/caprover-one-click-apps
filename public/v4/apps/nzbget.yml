@@ -2,7 +2,6 @@ captainVersion: 4
 services:
     $$cap_appname:
         image: ghcr.io/linuxserver/nzbget:$$cap_nzbget_version
-        restart: unless-stopped
         environment:
             TZ: $$cap_tz
             PUID: $$cap_puid
