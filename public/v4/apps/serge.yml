@@ -15,7 +15,7 @@ caproverOneClickApp:
     variables:
         - id: '$$cap_myapp_version'
           label: Serge version
-          defaultValue: '0.1.3'
+          defaultValue: '0.4.0'
           description: Check out their GitHub page for the valid tags https://github.com/nsarrazin/serge/pkgs/container/serge
           validRegex: '/.{1,}/'
     instructions:
