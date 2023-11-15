@@ -7,6 +7,7 @@ services:
             - '$$cap_appname-configs:/arma3/configs'
             - '$$cap_appname-mods:/arma3/mods'
             - '$$cap_appname-servermods:/arma3/servermods'
+            - '$$cap_appname-steamcmd:/steamcmd'
         environment:
             ARMA_BINARY: $$cap_binary
             ARMA_CDLC: $$cap_cdlc
