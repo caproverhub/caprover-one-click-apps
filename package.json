@@ -3,22 +3,22 @@
   "version": "1.0.0",
   "description": "Custom One Click App Repository for CapRover",
   "scripts": {
-    "formatter": "prettier --check \"./public/**/*.(json|yml)\"",
-    "formatter-write": "prettier --write \"./public/**/*.(json|yml)\"",
+    "formatter": "prettier -c \"./public/**/*.(json|yml)\"",
+    "formatter-write": "prettier -w \"./public/**/*.(json|yml)\"",
     "build": "rm -rf ./dist/ && mkdir -p dist && node ./scripts/build.js",
     "validate_apps": "node ./scripts/validate_apps.js",
     "publish": "pnpm run build && ./scripts/publish-from-actions.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/awesomehubio/caprover-one-click-apps.git"
+    "url": "git+https://github.com/Awes0meHub/caprover-one-click-apps.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/awesomehubio/caprover-one-click-apps/issues"
+    "url": "https://github.com/Awes0meHub/caprover-one-click-apps/issues"
   },
-  "homepage": "https://github.com/awesomehubio/caprover-one-click-apps",
+  "homepage": "https://github.com/Awes0meHub/caprover-one-click-apps",
   "dependencies": {
     "fs-extra": "^11.2.0",
     "gh-pages": "^6.1.0",
