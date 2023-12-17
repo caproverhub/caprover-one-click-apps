@@ -5,6 +5,8 @@ services:
         image: fallenbagel/jellyseerr:$$cap_jellyseerr_version
         environment:
             TZ: $$cap_tz
+        volumes:
+            - $$cap_appname-data:/app/config
         caproverExtra:
             containerHttpPort: 5055
 caproverOneClickApp:
