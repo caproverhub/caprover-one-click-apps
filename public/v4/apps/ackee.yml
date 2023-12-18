@@ -2,8 +2,6 @@ captainVersion: 4
 services:
     # Ackee
     $$cap_appname:
-        depends_on:
-            - $$cap_appname-mongodb
         image: electerious/ackee:$$cap_ackee_version
         environment:
             WAIT_HOSTS: srv-captain--$$cap_appname-mongodb:27017
@@ -27,19 +25,21 @@ caproverOneClickApp:
           defaultValue: '3.4.2'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/electerious/ackee/tags
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_ackee_username
           label: Ackee Admin User
-          defaultValue: ''
           description: 'Username for Ackee'
+
         - id: $$cap_ackee_passwd
           label: Ackee Admin Password
-          defaultValue: ''
           description: 'Your super secret Password for Ackee'
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_ackee_access_origin
           label: CORS headers
-          defaultValue: 'https://example.com,https://example2.com'
+          defaultValue: 'https://example.com,https://ackee.example.com'
           description: 'Ackee requires correct CORS headers. pls read https://docs.ackee.electerious.com/#/docs/CORS%20headers#heroku-or-platforms-as-a-service-configuration'
+
         - id: $$cap_mongo_version
           label: MongoDB Version
           defaultValue: '4.0.20'
@@ -51,7 +51,7 @@ caproverOneClickApp:
         end: >-
             Aaaand you're done! 😄
             Your service is available at http://$$cap_appname.$$cap_root_domain
-    displayName: ''
+    displayName: 'Ackee'
     isOfficial: true
     baseUrl: https://ackee.electerious.com
     description: Self-hosted, Node.js based analytics tool for those who care about privacy.
