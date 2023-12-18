@@ -41,7 +41,6 @@ To create your own repository:
 | [Lychee](https://github.com/lycheeorg/lychee) | A great looking and easy-to-use photo-management-system. |
 | [Metube](https://github.com/alexta69/metube) | Web GUI for youtube-dl with playlist support. |
 | [Mixpost](https://mixpost.app) | Self-Hosted Social Media Management Software. |
-| [NZBGet](https://nzbget.net) | The most efficient usenet downloader. |
 | [Porn Vault](https://gitlab.com/porn-vault/porn-vault) | Organizer for adult videos and imagery. |
 | [pgAdmin4](https://www.pgadmin.org/) | pgAdmin 4 is a rewrite of the popular pgAdmin3 management tool for the PostgreSQL. |
 | [Photoview](https://github.com/viktorstrate/photoview) | Photo gallery for self-hosted personal servers. |
