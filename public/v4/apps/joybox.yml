@@ -13,6 +13,7 @@ caproverOneClickApp:
           label: JoyBox Version
           defaultValue: be5a97aef508b1e74000ddb8c547710cd30c8a11
           description: Check out their Docker page for the valid tags https://github.com/joyboxxx/joybox/pkgs/container/joybox
+
         - id: $$cap_default_access
           label: Default access type
           description: >-
@@ -21,6 +22,7 @@ caproverOneClickApp:
               VIEW_ACCESS = password required to add, delete sources.
               VIEW_ACCESS is reccomended.
           defaultValue: VIEW_ACCESS
+
         - id: $$cap_access_password
           label: Access password
           defaultValue: $$cap_gen_random_hex(10)
