@@ -81,7 +81,7 @@ function validateV4() {
                 !fs.statSync(logoFullPath).isFile()
             ) {
                 let printablePath = logoFullPath
-                printablePath = printablePath.substr(
+                printablePath = printablePath.slice(
                     printablePath.indexOf(`/${PUBLIC}`)
                 )
                 throw new Error(
@@ -143,7 +143,7 @@ function validateV2() {
                 !fs.statSync(logoFullPath).isFile()
             ) {
                 let printablePath = logoFullPath
-                printablePath = printablePath.substr(
+                printablePath = printablePath.slice(
                     printablePath.indexOf(`/${PUBLIC}`)
                 )
                 throw new Error(
