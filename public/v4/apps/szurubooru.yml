@@ -9,8 +9,6 @@ services:
             BASE_URL: https://$$cap_appname.$$cap_root_domain/
         volumes:
             - $$cap_appname-data:/data
-        depends_on:
-            - $$cap_appname-server
 
     # Server
     $$cap_appname-server:
@@ -24,8 +22,6 @@ services:
         volumes:
             - $$cap_appname-data:/data
             - $$cap_appname-config:/opt/app
-        depends_on:
-            - $$cap_appname-db
         caproverExtra:
             notExposeAsWebApp: 'true'
 
@@ -47,14 +43,17 @@ caproverOneClickApp:
           label: Szurubooru Client Version
           defaultValue: '2.5-edge'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/szurubooru/client/tags
+
         - id: $$cap_db_user
           label: Postgres database user
           defaultValue: szurubooru
           description: Enter a user for database
+
         - id: $$cap_db_name
           label: Postgres database name
           defaultValue: szurubooru
           description: Enter a databse name
+
         - id: $$cap_db_pass
           label: Postgres database password
           defaultValue: $$cap_gen_random_hex(24)

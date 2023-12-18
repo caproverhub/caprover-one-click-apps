@@ -1,14 +1,14 @@
 captainVersion: 4
 services:
     $$cap_appname:
-        image: linuxserver/qbittorrent:$$cap_qbittorrent_version
+        image: lscr.io/linuxserver/qbittorrent:$$cap_qbittorrent_version
         environment:
             TZ: $$cap_tz
-            UMASK_SET: 022
+            PUID: $$cap_puid
+            PGID: $$cap_guid
             WEBUI_PORT: 80
         ports:
             - 6881:6881
-        hostname: $$cap_appname.$$cap_root_domain
         volumes:
             - $$cap_appname-config:/config
             - $$cap_path_to_downloads:/downloads
@@ -16,14 +16,28 @@ caproverOneClickApp:
     variables:
         - id: $$cap_qbittorrent_version
           label: qBittorrent Version
-          defaultValue: version-14.2.5.99202004250119-7015-2c65b79ubuntu18.04.1
-          description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/qbittorrent/tags
+          defaultValue: 4.6.2
+          description: Check out their Docker page for the valid tags https://github.com/linuxserver/docker-qbittorrent/pkgs/container/qbittorrent
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_tz
           label: Time Zone
           defaultValue: Europe/Brussels
           description: Get yours from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           validRegex: /.{1,}/
+
+        - id: $$cap_puid
+          label: User ID
+          defaultValue: '1000'
+          description: User ID that the process uses, run (id $user) in your instance to see the id
+          validRegex: /.{1,}/
+
+        - id: $$cap_guid
+          label: Group ID
+          defaultValue: '1000'
+          description: Group ID that the process uses, run (id $user) in your instance to see the id
+          validRegex: /.{1,}/
+
         - id: $$cap_path_to_downloads
           label: Path to downloads folder
           description: Path to downloads folder where u want to save the downloaded torrents
@@ -32,8 +46,14 @@ caproverOneClickApp:
         start: >-
             The qBittorrent project aims to provide an open-source software alternative to µTorrent.
             qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
-        end: >-
-            qBittorrent is deployed and available as $$cap_appname.
+        end: |-
+            ✅ qBittorrent has been deployed!
+            --------------------------------------------
+            Your service is available at http://$$cap_appname.$$cap_root_domain
+
+            A temporary password for the admin user will be printed to the container log on startup.
+
+            You must then change username/password in the web UI section of settings. If you do not change the password a new one will be generated every time the container starts.
     displayName: qBittorrent
     isOfficial: true
     description: qBittorrent BitTorrent client

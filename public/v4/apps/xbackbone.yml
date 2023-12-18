@@ -35,22 +35,27 @@ caproverOneClickApp:
           defaultValue: 'latest'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/pe46dro/xbackbone-docker/tags
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_xbackbone_upload_size
           label: XBackBone File upload max size
           defaultValue: '1G'
+
         - id: $$cap_mariadb_version
           label: MariaDB Version
           defaultValue: '10.5.6'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/library/mariadb/tags/
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_mariadb_db
           label: MariaDB Database
           description: Database for XBackBone
           defaultValue: 'xbb'
+
         - id: $$cap_mariadb_user
           label: MariaDB User
           description: Database User for XBackBone
           defaultValue: 'xbb'
+
         - id: $$cap_mariadb_password
           label: MariaDB database user password
           description: Super secret database user password

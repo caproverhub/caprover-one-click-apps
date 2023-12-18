@@ -17,14 +17,18 @@ caproverOneClickApp:
           defaultValue: 'latest'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/bsyed/troddit/tags
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_app_url
           label: Base url.
           defaultValue: https://$$cap_appname.$$cap_root_domain
+
         - id: $$cap_redirect_url
           label: Reddit redirect url.
           defaultValue: https://$$cap_appname.$$cap_root_domain/api/auth/callback/reddit
+
         - id: $$cap_client_id
           label: ID of your Reddit app
+
         - id: $$cap_client_secret
           label: Secret from your Reddit app
     instructions:

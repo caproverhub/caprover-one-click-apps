@@ -24,11 +24,13 @@ caproverOneClickApp:
           defaultValue: latest
           description: Check out their Docker page for the valid tags https://hub.docker.com/r/stashapp/stash/tags
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_tz
           label: Time Zone
           defaultValue: Europe/Brussels
           description: Get yours from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           validRegex: /.{1,}/
+
         - id: $$path_to_media
           label: Path to media folder
           description: Point this at your video collection.

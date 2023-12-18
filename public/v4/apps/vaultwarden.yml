@@ -31,30 +31,36 @@ caproverOneClickApp:
           defaultValue: 1.28.1
           description: Check out their Docker page for the valid tags https://hub.docker.com/r/vaultwarden/server/tags
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_register_enabled
           label: enabled open registration
           defaultValue: true
           description: If field is true, all visitors can create an account. If false, only the administrator can invite other users.
           validRegex: /^(true|false)$/
+
         - id: $$cap_admin_token
           label: admin password
           defaultValue:
           description: this password enables the admin zone on /admin. If you let this password empty, the admin interface will be disabled and it will be the best safety option.
+
         - id: $$cap_mariadb_version
           label: Database | Version
           description: MariaDB version. Check out their valid tags at https://hub.docker.com/_/mariadb/tags
           defaultValue: '10.7.8'
           validRegex: /.{1,}/
+
         - id: $$cap_mariadb_name
           label: Database | Name
           description: Name of the MariaDB database.
           defaultValue: vaultwarden
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_mariadb_username
           label: Database | User Name
           description: Name of the MariaDB user.
           defaultValue: vaultwarden
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_mariadb_password
           label: Database | User Password
           description: Password of the MariaDB user.
