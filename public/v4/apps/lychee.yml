@@ -2,8 +2,6 @@ captainVersion: 4
 services:
     # Lychee
     $$cap_appname:
-        depends_on:
-            - $$cap_appname-db
         image: lycheeorg/lychee:$$cap_lychee_version
         environment:
             TZ: $$cap_tz
@@ -20,6 +18,7 @@ services:
             - $$cap_appname-conf:/conf
             - $$cap_appname-uploads:/uploads
             - $$cap_appname-sym:/sym
+            - $$cap_appname-logs:/logs
     # MariaDB
     $$cap_appname-db:
         image: mariadb:$$cap_mariadb_version
@@ -38,38 +37,46 @@ caproverOneClickApp:
           label: Timezone
           description: This is the timezone for the application, find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           defaultValue: Europe/Brussels
+
         - id: $$cap_lychee_version
           label: Lychee Version
           defaultValue: 'v4.0.7'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/lycheeorg/lychee/tags
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_puid
           label: User ID
           defaultValue: '1000'
           description: User ID that the process uses, run (id $user) in your instance to see the id
           validRegex: /.{1,}/
+
         - id: $$cap_guid
           label: Group ID
           defaultValue: '1000'
           description: Group ID that the process uses, run (id $user) in your instance to see the id
           validRegex: /.{1,}/
+
         - id: $$cap_webui_port
           label: Lychee WebUI Port
           description: The port used to access Lychee
           defaultValue: '90'
+
         - id: $$cap_mariadb_version
           label: MariaDB Version
           defaultValue: '10.5.6'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/library/mariadb/tags/
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_mariadb_db
           label: MariaDB Database
           description: Database for Lychee
           defaultValue: 'lychee'
+
         - id: $$cap_mariadb_user
           label: MariaDB User
           description: Database User for Lychee
           defaultValue: 'lychee'
+
         - id: $$cap_mariadb_password
           label: MariaDB database user password
           description: Super secret database user password
