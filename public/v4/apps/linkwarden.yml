@@ -23,25 +23,28 @@ services:
             - $$cap_appname-db-data:/var/lib/postgresql/data
         caproverExtra:
             notExposeAsWebApp: 'true'
-
 caproverOneClickApp:
     variables:
         - id: $$cap_linkwarden_version
           label: Linkwarden Version
           defaultValue: v2.2.1
           description: Checkout their docker page for the valid tags https://github.com/linkwarden/linkwarden/pkgs/container/linkwarden
+
         - id: $$cap_app_key
           label: Secret Key
           description: Secret key.
           defaultValue: $$cap_gen_random_hex(24)
+
         - id: $$cap_db_user
           label: Postgres database user
           defaultValue: linkwarden
           description: Enter a user for database
+
         - id: $$cap_db_name
           label: Postgres database name
           defaultValue: linkwarden_db
           description: Enter a databse name
+
         - id: $$cap_db_pass
           label: Postgres database password
           defaultValue: $$cap_gen_random_hex(24)
