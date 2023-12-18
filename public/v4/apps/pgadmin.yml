@@ -17,9 +17,11 @@ caproverOneClickApp:
           defaultValue: latest
           description: Check out their Docker page for the valid tags https://hub.docker.com/r/dpage/pgadmin4/tags
           validRegex: /^([^\s^\/])+$/
+
         - id: $$cap_pgadmin_email
           label: Default Email
           description: This is the email address used when setting up the initial administrator account to login to pgAdmin. This variable is required and must be set at launch time.
+
         - id: $$cap_pgadmin_pass
           label: Your super secret password
           description: This is the password used when setting up the initial administrator account to login to pgAdmin. This variable is required and must be set at launch time.
