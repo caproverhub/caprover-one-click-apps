@@ -1,10 +1,11 @@
 captainVersion: 4
 services:
     $$cap_appname:
-        image: linuxserver/heimdall:$$cap_heimdall_version
+        image: lscr.io/linuxserver/heimdall:$$cap_heimdall_version
         environment:
             TZ: $$cap_tz
-        hostname: $$cap_appname.$$cap_root_domain
+            PUID: $$cap_puid
+            PGID: $$cap_guid
         volumes:
             - $$cap_appname-config:/config
 caproverOneClickApp:
@@ -13,10 +14,23 @@ caproverOneClickApp:
           label: Timezone
           description: This is the timezone for the application, find yours at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
           defaultValue: Europe/Brussels
+
         - id: $$cap_heimdall_version
           label: Version Tag
           description: Check out their Docker page for the valid tags https://hub.docker.com/r/linuxserver/heimdall/tags
           defaultValue: 'latest'
+
+        - id: $$cap_puid
+          label: User ID
+          defaultValue: '1000'
+          description: User ID that the process uses, run (id $user) in your instance to see the id
+          validRegex: /.{1,}/
+
+        - id: $$cap_guid
+          label: Group ID
+          defaultValue: '1000'
+          description: Group ID that the process uses, run (id $user) in your instance to see the id
+          validRegex: /.{1,}/
     instructions:
         start: |-
             Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way. 
