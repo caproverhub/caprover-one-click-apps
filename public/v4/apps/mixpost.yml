@@ -38,10 +38,56 @@ services:
         volumes:
             - $$cap_appname-redis:/data
 caproverOneClickApp:
-    displayName: Mixpost
-    description: Self-Hosted Social Media Management Software
-    isOfficial: true
-    documentation: https://mixpost.app
+    variables:
+        - id: $$cap_mixpost_version
+          label: Application | Version
+          description: Mixpost version. Check out their valid tags at https://hub.docker.com/r/inovector/mixpost
+          defaultValue: 'v1.1.3'
+          validRegex: /.{1,}/
+
+        - id: $$cap_redis_version
+          label: Cache | Version
+          description: Redis version. Check out their valid tags at https://hub.docker.com/_/redis/tags
+          defaultValue: '7.0-alpine'
+          validRegex: /.{1,}/
+
+        - id: $$cap_mixpost_app_name
+          label: Application | Name
+          description: Name of the application.
+          defaultValue: Mixpost
+          validRegex: /.{1,}/
+
+        - id: $$cap_mixpost_app_key
+          label: Application | Key
+          description: |-
+              Base64 encoded application key for encryption.
+              Use `https://generate-random.org/laravel-key-generator?count=1` to generate a key.
+          defaultValue: base64:NWJzMXh3ZGl1bG9xZDc4c3NlejkzeXJudmd1ODJ0cWE=
+          validRegex: /^([^\s^\/])+$/
+
+        - id: $$cap_mariadb_version
+          label: Database | Version
+          description: MariaDB version. Check out their valid tags at https://hub.docker.com/_/mariadb/tags
+          defaultValue: '10.7.8'
+          validRegex: /.{1,}/
+
+        - id: $$cap_mariadb_name
+          label: Database | Name
+          description: Name of the MariaDB database.
+          defaultValue: mixpost
+          validRegex: /^([^\s^\/])+$/
+
+        - id: $$cap_mariadb_username
+          label: Database | User Name
+          description: Name of the MariaDB user.
+          defaultValue: mixpost
+          validRegex: /^([^\s^\/])+$/
+
+        - id: $$cap_mariadb_password
+          label: Database | User Password
+          description: Password of the MariaDB user.
+          defaultValue: $$cap_gen_random_hex(16)
+          validRegex: /^([^\s^\/])+$/
     instructions:
         start: |-
             Easily create, schedule, publish, and manage social media content in one place, with no limits or monthly subscription fees.
@@ -50,46 +96,7 @@ caproverOneClickApp:
             Mixpost has been successfully deployed! It might take few moments before it's fully started.
             You can access the application at `http://$$cap_appname.$$cap_root_domain`.
             Find the administrator login details in the logs.
-    variables:
-        - id: $$cap_mixpost_version
-          label: Application | Version
-          description: Mixpost version. Check out their valid tags at https://hub.docker.com/r/inovector/mixpost
-          defaultValue: 'v1.1.3'
-          validRegex: /.{1,}/
-        - id: $$cap_redis_version
-          label: Cache | Version
-          description: Redis version. Check out their valid tags at https://hub.docker.com/_/redis/tags
-          defaultValue: '7.0-alpine'
-          validRegex: /.{1,}/
-        - id: $$cap_mixpost_app_name
-          label: Application | Name
-          description: Name of the application.
-          defaultValue: Mixpost
-          validRegex: /.{1,}/
-        - id: $$cap_mixpost_app_key
-          label: Application | Key
-          description: |-
-              Base64 encoded application key for encryption.
-              Use `https://generate-random.org/laravel-key-generator?count=1` to generate a key.
-          defaultValue: base64:NWJzMXh3ZGl1bG9xZDc4c3NlejkzeXJudmd1ODJ0cWE=
-          validRegex: /^([^\s^\/])+$/
-        - id: $$cap_mariadb_version
-          label: Database | Version
-          description: MariaDB version. Check out their valid tags at https://hub.docker.com/_/mariadb/tags
-          defaultValue: '10.7.8'
-          validRegex: /.{1,}/
-        - id: $$cap_mariadb_name
-          label: Database | Name
-          description: Name of the MariaDB database.
-          defaultValue: mixpost
-          validRegex: /^([^\s^\/])+$/
-        - id: $$cap_mariadb_username
-          label: Database | User Name
-          description: Name of the MariaDB user.
-          defaultValue: mixpost
-          validRegex: /^([^\s^\/])+$/
-        - id: $$cap_mariadb_password
-          label: Database | User Password
-          description: Password of the MariaDB user.
-          defaultValue: $$cap_gen_random_hex(16)
-          validRegex: /^([^\s^\/])+$/
+    displayName: Mixpost
+    description: Self-Hosted Social Media Management Software
+    isOfficial: true
+    documentation: https://mixpost.app
