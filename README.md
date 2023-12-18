@@ -29,7 +29,6 @@ To create your own repository:
 | [Ackee](https://ackee.electerious.com) | Node.js based analytics tool for those who care about privacy. |
 | [Arma3Server](https://github.com/BrettMayson/Arma3Server) | Arma 3 Dedicated Server. |
 | [Chevereto](https://github.com/tanmng/docker-chevereto) | Ultimate image sharing software 🦄. |
-| [DashMachine](https://github.com/rmountjoy92/DashMachine) | Another web application bookmark dashboard, with fun features. |
 | [Duplicati](https://docs.linuxserver.io/images/docker-duplicati/) | Store securely encrypted backups in the cloud! |
 | [Ganymede](https://github.com/Zibbp/ganymede) | Twitch VOD and Stream archiving platform with a rendered chat. |
 | [Heimdall](https://docs.linuxserver.io/images/docker-heimdall) | An Application dashboard and launcher. |
