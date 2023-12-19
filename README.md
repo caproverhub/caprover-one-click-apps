@@ -59,7 +59,8 @@ To create your own repository:
 | [Trilium](https://github.com/zadam/trilium) | Build your personal knowledge base with Trilium Notes |
 | [Troddit](https://github.com/burhan-syed/troddit) | A web client for Reddit. |
 | [Uptime Kuma](https://github.com/louislam/uptime-kuma) | A fancy self-hosted monitoring tool |
-| [vaultwarden](https://github.com/dani-garcia/vaultwarden) | Unofficial Bitwarden compatible server written in Rust. |
+| [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | Unofficial Bitwarden compatible server written in Rust. |
+| [Vikunja](https://vikunja.io) | The open-source, self-hostable to-do app. Organize everything, on all platforms. |
 | [Webtop](https://github.com/linuxserver/docker-webtop) | Ubuntu and Alpine based Webtop images, Linux in a web browser. |
 | [XBackBone](https://xbackbone.app) | A lightweight file manager with full ShareX, Screencloud support and more. |
 | [Yagpdb](https://yagpdb.xyz) | Yet another general purpose discord bot |
