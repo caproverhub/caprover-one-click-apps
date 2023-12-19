@@ -62,3 +62,4 @@ To create your own repository:
 | [Webtop](https://github.com/linuxserver/docker-webtop) | Ubuntu and Alpine based Webtop images, Linux in a web browser. |
 | [XBackBone](https://xbackbone.app) | A lightweight file manager with full ShareX, Screencloud support and more. |
 | [Yagpdb](https://yagpdb.xyz) | Yet another general purpose discord bot |
+| [YT-dlp-web](https://github.com/sooros5132/yt-dlp-web) | Self-hosted yt-dlp with the Web UI. |
