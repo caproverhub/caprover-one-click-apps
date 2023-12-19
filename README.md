@@ -30,6 +30,7 @@ To create your own repository:
 | [Arma3Server](https://github.com/BrettMayson/Arma3Server) | Arma 3 Dedicated Server. |
 | [Chevereto](https://github.com/tanmng/docker-chevereto) | Ultimate image sharing software 🦄. |
 | [Duplicati](https://docs.linuxserver.io/images/docker-duplicati/) | Store securely encrypted backups in the cloud! |
+| [Emby](https://docs.linuxserver.io/images/docker-emby/) | Your personal media on any device. |
 | [Ganymede](https://github.com/Zibbp/ganymede) | Twitch VOD and Stream archiving platform with a rendered chat. |
 | [Heimdall](https://docs.linuxserver.io/images/docker-heimdall) | An Application dashboard and launcher. |
 | [Homepage](https://github.com/benphelps/homepage) | A modern, secure, highly customizable application dashboard. |
