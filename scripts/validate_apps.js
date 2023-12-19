@@ -1,169 +1,71 @@
-/*jshint esversion: 6 */
-const path = require('path')
-const yaml = require('yaml')
-const fs = require('fs-extra')
+const path = require('path');
+const yaml = require('yaml');
+const fs = require('fs-extra');
 
-const PUBLIC = `public`
-const pathOfPublic = path.join(__dirname, '..', PUBLIC)
+// Let's get comfy with these paths
+const publicFolder = path.join(__dirname, '..', 'public');
+const versionFolder = path.join(publicFolder, 'v4'); // We're chill with just "v4" now
 
-// validating version 4
-function validateV4() {
-    const version = '4'
-    const pathOfVersion = path.join(pathOfPublic, 'v' + version)
-    const pathOfApps = path.join(pathOfVersion, 'apps')
+// Time to check out the apps in that folder
+async function checkApps() {
+  const appFiles = await fs.readdir(path.join(versionFolder, 'apps')); // Grab all file names
+  const validApps = appFiles.filter(file => file.endsWith('.yml')); // Keep only the cool YAML ones
 
-    return fs.readdir(pathOfApps).then(function (items) {
-        const apps = items.filter((v) => v.includes('.yml'))
+  if (validApps.length !== appFiles.length) { // Uh oh, some files are misfits!
+    throw new Error('Hey! Everything in v4 needs that .yml extension.');
+  }
 
-        if (items.length !== apps.length) {
-            throw new Error('All files in v4 must end with .yml')
-        }
+  for (const appFile of validApps) { // Let's loop through these awesome apps
+    const filePath = path.join(versionFolder, 'apps', appFile);
+    const content = await yaml.parse(fs.readFileSync(filePath, 'utf-8')); // Read the app's story
+    const captainVersion = `${content.captainVersion}`; // Check what version it's rocking
 
-        for (var i = 0; i < apps.length; i++) {
-            const contentString = fs.readFileSync(
-                path.join(pathOfApps, apps[i]),
-                'utf-8'
-            )
-            const content = yaml.parse(contentString)
-            const captainVersion = content.captainVersion + ''
-            const versionString = version + ''
-            if (versionString !== captainVersion)
-                throw new Error(
-                    `unmatched versions   ${versionString}  ${captainVersion} for ${apps[i]}`
-                )
-
-            apps[i] = apps[i].replace('.yml', '')
-
-            if (!content.caproverOneClickApp) {
-                throw new Error(
-                    `Cannot find caproverOneClickApp for ${apps[i]}`
-                )
-            }
-
-            if (!content.caproverOneClickApp.description) {
-                throw new Error(`Cannot find description for ${apps[i]}`)
-            }
-
-            if (content.caproverOneClickApp.description.length > 200) {
-                throw new Error(
-                    `Description too long for ${apps[i]}  - keep it below 200 chars`
-                )
-            }
-
-            if (
-                !content.caproverOneClickApp.instructions ||
-                !content.caproverOneClickApp.instructions.start ||
-                !content.caproverOneClickApp.instructions.end
-            ) {
-                throw new Error(
-                    `Cannot find instructions.start or instructions.end for ${apps[i]}`
-                )
-            }
-
-            if (!content.services) {
-                throw new Error(`Cannot find services for ${apps[i]}`)
-            }
-
-            Object.keys(content.services).forEach((serviceName) => {
-                // jshint ignore:line
-                const s = content.services[serviceName]
-                if (s.image && s.image.endsWith(':latest')) {
-                    // throw new Error(`"latest" tag is not allowed as it can change and break the setup, see ${apps[i]}`);
-                }
-            })
-
-            const logoFileName = apps[i] + '.png'
-
-            const logoFullPath = path.join(pathOfVersion, 'logos', logoFileName)
-
-            if (
-                !fs.existsSync(logoFullPath) ||
-                !fs.statSync(logoFullPath).isFile()
-            ) {
-                let printablePath = logoFullPath
-                printablePath = printablePath.slice(
-                    printablePath.indexOf(`/${PUBLIC}`)
-                )
-                throw new Error(
-                    `Cannot find logo for ${apps[i]} ${printablePath}`
-                )
-            }
-
-            console.log(`Validated ${apps[i]}`)
-        }
-    })
-}
-
-// validating version 2
-function validateV2() {
-    const version = '2'
-    const pathOfVersion = path.join(pathOfPublic, 'v' + version)
-    const pathOfApps = path.join(pathOfVersion, 'apps')
-
-    if (!fs.existsSync(pathOfApps)) {
-        return
+    if (captainVersion !== '4') { // Whoops, wrong version on the dance floor!
+      throw new Error(`Whoa, an unknown captain version: ${captainVersion}`);
     }
 
-    return fs.readdir(pathOfApps).then(function (items) {
-        const apps = items.filter((v) => v.includes('.json'))
+    validateAppContent(appFile, content); // Make sure the app follows the rules
 
-        if (items.length !== apps.length) {
-            throw new Error('All files in v2 must end with .json')
-        }
+    const logoFile = appFile.replace('.yml', ''); // Extract the app name without YAML extension
+    const logoPath = path.join(versionFolder, 'logos', `${logoFile}.png`); // Build the correct logo path
 
-        for (var i = 0; i < apps.length; i++) {
-            const contentString = fs.readFileSync(
-                path.join(pathOfApps, apps[i])
-            )
-            const content = JSON.parse(contentString)
-            const captainVersion = content.captainVersion + ''
-            const versionString = version + ''
-            if (versionString !== captainVersion)
-                throw new Error(
-                    `unmatched versions   ${versionString}  ${captainVersion} for ${apps[i]}`
-                )
+    if (!fs.existsSync(logoPath) || !fs.statSync(logoPath).isFile()) { // Uh oh, no matching pic!
+      throw new Error(`Missing logo for ${appFile}: ${logoPath}`);
+    }
 
-            apps[i] = apps[i].replace('.json', '')
+    console.log(`App ${appFile} looking good! `); // Show some love for the validated app
+  }
+}
 
-            if (!content.description) {
-                throw new Error(`Cannot find description for ${apps[i]}`)
-            }
-            if (content.description.length > 200) {
-                throw new Error(
-                    `Description too long for ${apps[i]}  - keep it below 200 chars`
-                )
-            }
+function validateAppContent(appName, content) { // Double-check the app's details
+    if (!content.caproverOneClickApp) { // Missing some key info?
+      throw new Error(`Missing caproverOneClickApp for ${appName}`);
+    }
+  
+    if (!content.caproverOneClickApp.description) { // No description? Can't tell anyone what it does!
+      throw new Error(`Missing description for ${appName}`);
+    }
+  
+    if (content.caproverOneClickApp.description.length > 200) { // Keep it short and sweet!
+      throw new Error(`Description too long for ${appName} - keep it under 200 characters`);
+    }
+  
+    if (!content.caproverOneClickApp.instructions ||
+        !content.caproverOneClickApp.instructions.start ||
+        !content.caproverOneClickApp.instructions.end) { // Need guidance to get things going!
+      throw new Error(`Missing instructions.start or instructions.end for ${appName}`);
+    }
+  
+    if (!content.services) { // This app doesn't do anything? 
+      throw new Error(`Missing services for ${appName}`);
+    }
 
-            const logoFileName = apps[i] + '.png'
-
-            const logoFullPath = path.join(pathOfVersion, 'logos', logoFileName)
-
-            if (
-                !fs.existsSync(logoFullPath) ||
-                !fs.statSync(logoFullPath).isFile()
-            ) {
-                let printablePath = logoFullPath
-                printablePath = printablePath.slice(
-                    printablePath.indexOf(`/${PUBLIC}`)
-                )
-                throw new Error(
-                    `Cannot find logo for ${apps[i]} ${printablePath}`
-                )
-            }
-
-            console.log(`Validated ${apps[i]}`)
-        }
-    })
+    return true;
 }
 
 Promise.resolve()
-    .then(function () {
-        return validateV2()
-    })
-    .then(function () {
-        return validateV4()
-    })
-    .catch(function (err) {
-        console.error(err)
-        process.exit(127)
-    })
+  .then(checkApps)
+  .catch(err => {
+    console.error(err);
+    process.exit(127);
+  });

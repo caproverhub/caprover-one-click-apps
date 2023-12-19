@@ -1,182 +1,97 @@
-const path = require('path')
-const yaml = require('yaml')
-const fs = require('fs-extra')
+const path = require('path');
+const yaml = require('yaml');
+const fs = require('fs-extra');
 
-const pathOfPublic = path.join(__dirname, '..', `public`)
+const publicFolder = path.join(__dirname, '..', 'public');
+const distFolder = path.join(__dirname, '..', 'dist');
+const v4Folder = path.join(distFolder, 'v4');
 
-const pathOfDist = path.join(__dirname, '..', `dist`)
+const sourceFolder = path.join(publicFolder, 'v4');
+const appsFolder = path.join(sourceFolder, 'apps');
+const logosFolder = path.join(sourceFolder, 'logos');
 
-const pathOfDistV4 = path.join(pathOfDist, 'v4')
+function readYamlFile(filePath) {
+    const contentString = fs.readFileSync(filePath, 'utf-8');
+    return yaml.parse(contentString);
+}
 
-const pathOfSourceDirectory = path.join(pathOfPublic, 'v4')
-const pathOfSourceDirectoryApps = path.join(pathOfSourceDirectory, 'apps')
-const pathOfSourceDirectoryLogos = path.join(pathOfSourceDirectory, 'logos')
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
-/**
- * Creates a listing of apps for GET https://apps.caprover.gocloud.fun/v4
- * {
-    "oneClickApps": [
-     {
-      "name": "adminer",
-      "displayName": "Adminer",
-      "description": "Adminer (formerly phpMinAdmin) is a full-featured database management tool written in PHP",
-      "isOfficial": true,
-      "logoUrl": "adminer.png"
-     },.....]}
- */
-function createAppList(appsFileNames, pathOfApps) {
-    const apps = appsFileNames.filter((v) => `${v}`.endsWith('.yml'))
+function makeAppList(appFilenames) {
+    const properAppFiles = appFilenames.filter((file) => file.endsWith('.yml'));
 
-    if (apps.length !== appsFileNames.length) {
-        throw new Error('All files in v4 must end with .yml extension!')
+    if (properAppFiles.length !== appFilenames.length) {
+        throw new Error('Hey! Everything in v4 needs that .yml extension.');
     }
 
-    const appDetails = []
+    const appDetails = [];
 
-    for (var i = 0; i < apps.length; i++) {
-        const contentString = fs.readFileSync(
-            path.join(pathOfApps, apps[i]),
-            'utf-8'
-        )
-        const content = yaml.parse(contentString)
-        const captainVersion = `${content.captainVersion}`
+    for (const filename of properAppFiles) {
+        const content = readYamlFile(path.join(appsFolder, filename));
+        const captainVersion = `${content.captainVersion}`;
 
-        apps[i] = apps[i].replace('.yml', '')
-        const caproverOneClickApp = content.caproverOneClickApp
+        const appName = filename.replace('.yml', '');
+        const appData = content.caproverOneClickApp || {};
 
         if (captainVersion === '4') {
-            if (!caproverOneClickApp.displayName) {
-                caproverOneClickApp.displayName = apps[i]
-                caproverOneClickApp.displayName =
-                    caproverOneClickApp.displayName.substr(0, 1).toUpperCase() +
-                    caproverOneClickApp.displayName.substring(
-                        1,
-                        caproverOneClickApp.displayName.length
-                    )
-            }
-            if (!caproverOneClickApp.description)
-                caproverOneClickApp.description = ''
+        appData.displayName = appData.displayName || appName;
+        appData.displayName = capitalizeFirstLetter(appData.displayName);
+        appData.description = appData.description || '';
 
-            appDetails[i] = {
-                name: apps[i],
-                displayName: caproverOneClickApp.displayName,
-                description: caproverOneClickApp.description,
-                isOfficial:
-                    `${caproverOneClickApp.isOfficial}`.toLowerCase().trim() ===
-                    'true',
-                logoUrl: apps[i] + '.png',
-            }
+        appDetails.push({
+            name: appName,
+            displayName: appData.displayName,
+            description: appData.description,
+            isOfficial: appData.isOfficial === 'true',
+            logoUrl: `${appName}.png`,
+        });
         } else {
-            throw new Error('Unknown captain-version: ' + captainVersion)
+            throw new Error(`Whoa, an unknown captain version: ${captainVersion}`);
         }
     }
 
     return {
-        appList: apps,
-        appDetails: appDetails,
-    }
-}
-
-function convertV4toV2(v4String) {
-    const parsed = JSON.parse(v4String)
-    if (`${parsed.captainVersion}` !== '4') {
-        throw new Error('CaptainVersion must be 4 for this conversion')
-    }
-
-    function moveProperty(propertyName) {
-        parsed[propertyName] = parsed.caproverOneClickApp[propertyName]
-    }
-
-    parsed.dockerCompose = {
-        services: parsed.services,
-    }
-    parsed.services = undefined
-
-    parsed.captainVersion = 2
-
-    moveProperty('variables')
-    moveProperty('instructions')
-    moveProperty('displayName')
-    moveProperty('isOfficial')
-    moveProperty('description')
-    moveProperty('documentation')
-
-    Object.keys(parsed.dockerCompose.services).forEach((serviceName) => {
-        const service = parsed.dockerCompose.services[serviceName]
-
-        if (!service.caproverExtra) {
-            return
-        }
-
-        if (service.caproverExtra.containerHttpPort) {
-            service.containerHttpPort = service.caproverExtra.containerHttpPort
-        }
-        if (service.caproverExtra.dockerfileLines) {
-            service.dockerfileLines = service.caproverExtra.dockerfileLines
-        }
-        if (service.caproverExtra.notExposeAsWebApp) {
-            service.notExposeAsWebApp = service.caproverExtra.notExposeAsWebApp
-        }
-
-        service.caproverExtra = undefined
-    })
-
-    parsed.caproverOneClickApp = undefined
-    return parsed
+        appList: properAppFiles,
+        appDetails,
+    };
 }
 
 function buildDist() {
-    return fs
-        .readdir(pathOfSourceDirectoryApps)
-        .then(function (appsFileNames) {
-            // [ app1.yml app2.yml .... ]
+  return fs
+    .readdir(appsFolder)
+    .then((appFilenames) => {
+      for (const filename of appFilenames) {
+        const filePath = path.join(appsFolder, filename);
+        const content = readYamlFile(filePath);
 
-            appsFileNames.forEach((appFileName) => {
-                console.log('Building dist for ' + appFileName)
+        fs.outputJsonSync(
+          path.join(v4Folder, 'apps', filename.replace('.yml', '')),
+          content
+        );
+      }
 
-                const pathOfAppFileInSource = path.join(
-                    pathOfSourceDirectoryApps,
-                    appFileName
-                )
-                const contentParsed = yaml.parse(
-                    fs.readFileSync(pathOfAppFileInSource, 'utf-8')
-                )
+      fs.copySync(logosFolder, path.join(v4Folder, 'logos'));
 
-                //v4
-                fs.outputJsonSync(
-                    path.join(pathOfDistV4, `apps`, appFileName.split('.')[0]),
-                    contentParsed
-                )
-            })
+      const allAppsList = makeAppList(appFilenames);
+      const list = {
+        oneClickApps: allAppsList.appDetails,
+      };
 
-            fs.copySync(
-                pathOfSourceDirectoryLogos,
-                path.join(pathOfDistV4, `logos`)
-            )
+      fs.outputJsonSync(path.join(v4Folder, 'list'), list);
 
-            const allAppsList = createAppList(
-                appsFileNames,
-                pathOfSourceDirectoryApps
-            )
-            const v3List = {
-                oneClickApps: allAppsList.appDetails,
-            }
-
-            fs.outputJsonSync(path.join(pathOfDistV4, 'list'), v3List)
-        })
-        .then(function () {
-            return fs.copySync(
-                path.join(pathOfPublic, 'CNAME'),
-                path.join(pathOfDist, 'CNAME')
-            )
-        })
+      return fs.copySync(path.join(publicFolder, 'CNAME'), path.join(distFolder, 'CNAME'));
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(127);
+    });
 }
 
 Promise.resolve()
-    .then(function () {
-        return buildDist()
-    })
-    .catch(function (err) {
-        console.error(err)
-        process.exit(127)
-    })
+  .then(() => buildDist())
+  .catch((err) => {
+    console.error(err);
+    process.exit(127);
+  });
