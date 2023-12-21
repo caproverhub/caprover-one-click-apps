@@ -65,6 +65,7 @@
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | Unofficial Bitwarden compatible server written in Rust. |
 | [Vikunja](https://vikunja.io) | The open-source, self-hostable to-do app. Organize everything, on all platforms. |
 | [Webtop](https://github.com/linuxserver/docker-webtop) | Ubuntu and Alpine based Webtop images, Linux in a web browser. |
+| [Wizarr](https://github.com/wizarrrr/wizarr) | Wizarr is an advanced user invitation and management system for Jellyfin, Plex, Emby etc. |
 | [XBackBone](https://xbackbone.app) | A lightweight file manager with full ShareX, Screencloud support and more. |
 | [Yagpdb](https://yagpdb.xyz) | Yet another general purpose discord bot |
 | [YT-dlp-web](https://github.com/sooros5132/yt-dlp-web) | Self-hosted yt-dlp with the Web UI. |
