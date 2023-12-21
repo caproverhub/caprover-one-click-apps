@@ -28,6 +28,7 @@
 | Name | Description |
 | ---- | ------------ |
 | [Ackee](https://ackee.electerious.com) | Node.js based analytics tool for those who care about privacy. |
+| [Apache Answer](https://answer.apache.org) | A Q&A platform software for teams. Whether it’s a community forum, help center, or knowledge management platform, you can always count on Answer. |
 | [Arma3Server](https://github.com/BrettMayson/Arma3Server) | Arma 3 Dedicated Server. |
 | [Chevereto](https://github.com/tanmng/docker-chevereto) | Ultimate image sharing software 🦄. |
 | [Duplicati](https://docs.linuxserver.io/images/docker-duplicati/) | Store securely encrypted backups in the cloud! |
