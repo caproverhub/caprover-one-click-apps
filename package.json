@@ -21,7 +21,7 @@
   "homepage": "https://github.com/Awes0meHub/caprover-one-click-apps",
   "dependencies": {
     "fs-extra": "^11.2.0",
-    "gh-pages": "^6.1.0",
+    "gh-pages": "^6.1.1",
     "prettier": "^3.1.1",
     "yaml": "^2.3.4"
   }
