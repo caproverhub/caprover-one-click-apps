@@ -23,56 +23,69 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 set -e
 
-# Configuration
-BUILD_DIR="dist"
-SOURCE_DIRECTORY_DEPLOY_GH="$HOME/temp-gh-deploy-src"
-CLONED_DIRECTORY_DEPLOY_GH="$HOME/temp-gh-deploy-cloned"
+BUILD_DIR=dist
+SOURCE_DIRECTORY_DEPLOY_GH=~/temp-gh-deploy-src
+CLONED_DIRECTORY_DEPLOY_GH=~/temp-gh-deploy-cloned
+
+echo "#############################################"
+echo "######### making directories"
+echo "######### $SOURCE_DIRECTORY_DEPLOY_GH"
+echo "######### $CLONED_DIRECTORY_DEPLOY_GH"
+echo "#############################################"
+
+mkdir -p $SOURCE_DIRECTORY_DEPLOY_GH
+mkdir -p $CLONED_DIRECTORY_DEPLOY_GH
+
+echo "#############################################"
+echo "######### Setting env vars"
+echo "#############################################"
+
 REMOTE_REPO="https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-REPONAME="$(basename "$GITHUB_REPOSITORY")"
-OWNER="$(dirname "$GITHUB_REPOSITORY")"
+REPONAME="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)"
+
+OWNER="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 1)"
 GHIO="${OWNER}.github.io"
-REMOTE_BRANCH=$([ "$REPONAME" == "$GHIO" ] && echo "master" || echo "gh-pages")
+if [[ "$REPONAME" == "$GHIO" ]]; then
+  REMOTE_BRANCH="master"
+else
+  REMOTE_BRANCH="gh-pages"
+fi
+sleep 1s
+echo "#############################################"
+echo "######### CLONING REMOTE_BRANCH: $REMOTE_BRANCH"
+echo "#############################################"
 
-# Functions
-prepare_directories() {
-    echo "Creating directories..."
-    mkdir -p "$SOURCE_DIRECTORY_DEPLOY_GH"
-    mkdir -p "$CLONED_DIRECTORY_DEPLOY_GH"
-}
 
-clone_repository() {
-    echo "Cloning branch '$REMOTE_BRANCH'..."
-    git clone --single-branch --branch="$REMOTE_BRANCH" "$REMOTE_REPO" "$CLONED_DIRECTORY_DEPLOY_GH"
-}
-
-copy_build_files() {
-    echo "Copying build files..."
-    cp -r "$BUILD_DIR" "$SOURCE_DIRECTORY_DEPLOY_GH/"
-    cp -r "$SOURCE_DIRECTORY_DEPLOY_GH/$BUILD_DIR" "$CLONED_DIRECTORY_DEPLOY_GH/"
-}
-
-clean_old_files() {
-    echo "Removing old files..."
-    cd "$CLONED_DIRECTORY_DEPLOY_GH" && git rm -rf . && git clean -fdx
-}
-
-commit_and_push() {
-    echo "Committing and pushing changes..."
-    mv "$CLONED_DIRECTORY_DEPLOY_GH/.git" "$CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR/"
-    cd "$CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR"
-    git config user.name "$GITHUB_ACTOR"
-    git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-    date > forcebuild.date
-    git add -A
-    git commit -m 'Deploy to GitHub Pages'
-    git push "$REMOTE_REPO" "$REMOTE_BRANCH:$REMOTE_BRANCH"
-}
-
-# Main execution
-prepare_directories
-clone_repository
-clean_old_files
-copy_build_files
-commit_and_push
+cp -r $BUILD_DIR $SOURCE_DIRECTORY_DEPLOY_GH/
+git clone --single-branch --branch=$REMOTE_BRANCH $REMOTE_REPO $CLONED_DIRECTORY_DEPLOY_GH
+sleep 1s
+echo "#############################################"
+echo "######### Removing old files"
+echo "#############################################"
+cd $CLONED_DIRECTORY_DEPLOY_GH && git rm -rf . && git clean -fdx
+sleep 1s
+echo "#############################################"
+echo "######### Copying files"
+echo "#############################################"
+cp -r $SOURCE_DIRECTORY_DEPLOY_GH/$BUILD_DIR $CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR
+mv $CLONED_DIRECTORY_DEPLOY_GH/.git $CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR/
+cd $CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR/
+sleep 1s
+echo "#############################################"
+echo "######### Content pre-commit ###"
+echo "#############################################"
+ls -la
+echo "#############################################"
+echo "######### Commit and push ###"
+echo "#############################################"
+sleep 1s
+git config user.name "${GITHUB_ACTOR}"
+git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+echo `date` >> forcebuild.date
+git add -A
+git commit -m 'Deploy to GitHub Pages'
+echo $REMOTE_REPO
+git push $REMOTE_REPO $REMOTE_BRANCH:$REMOTE_BRANCH
