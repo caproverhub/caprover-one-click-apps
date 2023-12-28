@@ -86,4 +86,5 @@ caproverOneClickApp:
     displayName: Yagpdb
     isOfficial: false
     description: Yet another general purpose discord bot
+    baseUrl: https://yagpdb.xyz
     documentation: Taken from https://yagpdb.xyz/
