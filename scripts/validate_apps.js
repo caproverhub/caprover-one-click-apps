@@ -2,70 +2,69 @@ const path = require('path');
 const yaml = require('yaml');
 const fs = require('fs-extra');
 
-// Let's get comfy with these paths
+// Define paths
 const publicFolder = path.join(__dirname, '..', 'public');
-const versionFolder = path.join(publicFolder, 'v4'); // We're chill with just "v4" now
+const versionFolder = path.join(publicFolder, 'v4');
 
-// Time to check out the apps in that folder
+// Check apps in the folder
 async function checkApps() {
-  const appFiles = await fs.readdir(path.join(versionFolder, 'apps')); // Grab all file names
-  const validApps = appFiles.filter(file => file.endsWith('.yml')); // Keep only the cool YAML ones
+  try {
+    const appFiles = await fs.readdir(path.join(versionFolder, 'apps'));
+    const validApps = appFiles.filter(file => file.endsWith('.yml'));
 
-  if (validApps.length !== appFiles.length) { // Uh oh, some files are misfits!
-    throw new Error('Hey! Everything in v4 needs that .yml extension.');
-  }
-
-  for (const appFile of validApps) { // Let's loop through these awesome apps
-    const filePath = path.join(versionFolder, 'apps', appFile);
-    const content = await yaml.parse(fs.readFileSync(filePath, 'utf-8')); // Read the app's story
-    const captainVersion = `${content.captainVersion}`; // Check what version it's rocking
-
-    if (captainVersion !== '4') { // Whoops, wrong version on the dance floor!
-      throw new Error(`Whoa, an unknown captain version: ${captainVersion}`);
+    if (validApps.length !== appFiles.length) {
+      throw new Error('Hey! Everything in v4 needs that .yml extension.');
     }
 
-    validateAppContent(appFile, content); // Make sure the app follows the rules
-
-    const logoFile = appFile.replace('.yml', ''); // Extract the app name without YAML extension
-    const logoPath = path.join(versionFolder, 'logos', `${logoFile}.png`); // Build the correct logo path
-
-    if (!fs.existsSync(logoPath) || !fs.statSync(logoPath).isFile()) { // Uh oh, no matching pic!
-      throw new Error(`Missing logo for ${appFile}: ${logoPath}`);
+    for (const appFile of validApps) {
+      await checkAppFile(appFile);
+      console.log(`App ${appFile} looking good!`);
     }
-
-    console.log(`App ${appFile} looking good! `); // Show some love for the validated app
-  }
-}
-
-function validateAppContent(appName, content) { // Double-check the app's details
-    if (!content.caproverOneClickApp) { // Missing some key info?
-      throw new Error(`Missing caproverOneClickApp for ${appName}`);
-    }
-  
-    if (!content.caproverOneClickApp.description) { // No description? Can't tell anyone what it does!
-      throw new Error(`Missing description for ${appName}`);
-    }
-  
-    if (content.caproverOneClickApp.description.length > 200) { // Keep it short and sweet!
-      throw new Error(`Description too long for ${appName} - keep it under 200 characters`);
-    }
-  
-    if (!content.caproverOneClickApp.instructions ||
-        !content.caproverOneClickApp.instructions.start ||
-        !content.caproverOneClickApp.instructions.end) { // Need guidance to get things going!
-      throw new Error(`Missing instructions.start or instructions.end for ${appName}`);
-    }
-  
-    if (!content.services) { // This app doesn't do anything? 
-      throw new Error(`Missing services for ${appName}`);
-    }
-
-    return true;
-}
-
-Promise.resolve()
-  .then(checkApps)
-  .catch(err => {
+  } catch (err) {
     console.error(err);
     process.exit(127);
-  });
+  }
+}
+
+async function checkAppFile(appFile) {
+  const filePath = path.join(versionFolder, 'apps', appFile);
+  const content = yaml.parse(await fs.readFile(filePath, 'utf-8'));
+  validateAppContent(appFile, content);
+  await checkLogo(appFile);
+}
+
+function validateAppContent(appName, content) {
+  if (!content.caproverOneClickApp) {
+    throw new Error(`Missing caproverOneClickApp for ${appName}`);
+  }
+
+  const { description, instructions } = content.caproverOneClickApp;
+  
+  if (!description) {
+    throw new Error(`Missing description for ${appName}`);
+  }
+
+  if (description.length > 200) {
+    throw new Error(`Description too long for ${appName} - keep it under 200 characters`);
+  }
+
+  if (!instructions || !instructions.start || !instructions.end) {
+    throw new Error(`Missing instructions.start or instructions.end for ${appName}`);
+  }
+
+  if (!content.services) {
+    throw new Error(`Missing services for ${appName}`);
+  }
+}
+
+async function checkLogo(appFile) {
+  const logoFile = appFile.replace('.yml', '');
+  const logoPath = path.join(versionFolder, 'logos', `${logoFile}.png`);
+
+  if (!await fs.pathExists(logoPath) || !(await fs.stat(logoPath)).isFile()) {
+    throw new Error(`Missing logo for ${appFile}: ${logoPath}`);
+  }
+}
+
+// Start the checking process
+checkApps();
