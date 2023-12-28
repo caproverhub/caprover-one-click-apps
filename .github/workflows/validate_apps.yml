@@ -35,6 +35,9 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm@8
 
+      - name: Install dependencies with pnpm
+        run: pnpm install
+
       - name: Validate code
         run: pnpm run validate
         env:
