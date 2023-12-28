@@ -18,8 +18,8 @@
 - 🗑️ Delete all existing apps (to avoid duplicate apps), and add your own apps.
 - 🛠️ Run `npm install -g pnpm` or `sudo npm install -g pnpm`
 - ⚙️ Run `pnpm i`
-- 🧪 Run `pnpm run validate_apps`
-- 📝 Run `pnpm run formatter-write`
+- 🧪 Run `pnpm run validate`
+- 📝 Run `pnpm run format:write`
 - 🏗️ Run `pnpm run build` 
 - 🌐 Now you can host the static content placed in `./dist` directory anywhere you want; the official repo uses GitHub Pages to publish the content. Make sure to update [CNAME](https://github.com/Awes0meHub/caprover-one-click-apps/blob/master/public/CNAME) to your own URL if you decide to do so.
 

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Custom One Click App Repository for CapRover",
   "scripts": {
-    "formatter": "prettier -c \"./public/**/*.(json|yml)\"",
-    "formatter-write": "prettier -w \"./public/**/*.(json|yml)\"",
+    "format": "prettier --check \"./public/**/*.{json,yml}\"",
+    "format:write": "prettier --write \"./public/**/*.{json,yml}\"",
     "build": "rm -rf ./dist/ && mkdir -p dist && node ./scripts/build.js",
-    "validate_apps": "node ./scripts/validate_apps.js",
+    "validate": "node ./scripts/validate_apps.js",
     "publish": "pnpm run build && ./scripts/publish-from-actions.sh"
   },
   "repository": {
