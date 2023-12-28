@@ -28,4 +28,4 @@ jobs:
       - name: Deploy to GitHub Pages
         run: pnpm run publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: $GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}
