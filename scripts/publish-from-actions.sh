@@ -58,11 +58,17 @@ function remove_old_files() {
 
 function copy_new_files() {
   echo "Copying new files to the cloned directory..."
+  if [[ ! -d "${SOURCE_DIRECTORY_DEPLOY_GH}/${BUILD_DIR}" ]]; then
+    echo "Error: Build directory ${SOURCE_DIRECTORY_DEPLOY_GH}/${BUILD_DIR} does not exist."
+    exit 1
+  fi
   cp -r "${SOURCE_DIRECTORY_DEPLOY_GH}/${BUILD_DIR}" "${CLONED_DIRECTORY_DEPLOY_GH}/${BUILD_DIR}"
-  mv "${CLONED_DIRECTORY_DEPLOY_GH}/.git" "${CLONED_DIRECTORY_DEPLOY_GH}/${BUILD_DIR}/"
-  cd "${CLONED_DIRECTORY_DEPLOY_GH}/${BUILD_DIR}/"
+  cd "${CLONED_DIRECTORY_DEPLOY_GH}" || exit
+  mv ".git" "${BUILD_DIR}/"
+  cd "${BUILD_DIR}" || exit
   sleep 1s
 }
+
 
 function commit_and_push() {
   echo "Committing and pushing to GitHub Pages..."
