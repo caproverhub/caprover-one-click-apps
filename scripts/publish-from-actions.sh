@@ -58,6 +58,7 @@ function remove_old_files() {
 
 function copy_new_files() {
   echo "Copying new files to the cloned directory..."
+  ls -la "${SOURCE_DIRECTORY_DEPLOY_GH}"
   if [[ ! -d "${SOURCE_DIRECTORY_DEPLOY_GH}/${BUILD_DIR}" ]]; then
     echo "Error: Build directory ${SOURCE_DIRECTORY_DEPLOY_GH}/${BUILD_DIR} does not exist."
     exit 1
