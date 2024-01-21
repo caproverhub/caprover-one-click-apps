@@ -5,6 +5,7 @@ services:
         image: vabene1111/recipes:$$cap_recipes_version
         environment:
             SECRET_KEY: $$cap_app_key
+            DB_ENGINE: django.db.backends.postgresql
             POSTGRES_HOST: srv-captain--$$cap_appname-db
             POSTGRES_USER: $$cap_db_user
             POSTGRES_DB: $$cap_db_name
@@ -17,7 +18,7 @@ services:
             containerHttpPort: 8080
     # Postgres
     $$cap_appname-db:
-        image: postgres:12-alpine
+        image: $$cap_db_version
         environment:
             POSTGRES_USER: $$cap_db_user
             POSTGRES_DB: $$cap_db_name
@@ -34,6 +35,11 @@ caproverOneClickApp:
           defaultValue: 1.4.8
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/vabene1111/recipes/tags
 
+        - id: $$cap_db_version
+          label: PostgreSQL Version
+          defaultValue: 'postgres:16-alpine'
+          description: Checkout their docker page for the valid tags https://hub.docker.com/_/postgres
+
         - id: $$cap_app_key
           label: Secret | Key
           description: |-
@@ -43,12 +49,12 @@ caproverOneClickApp:
 
         - id: $$cap_db_user
           label: Postgres database user
-          defaultValue: shynet
+          defaultValue: tdrecipes
           description: Enter a user for database
 
         - id: $$cap_db_name
           label: Postgres database name
-          defaultValue: shynet_db
+          defaultValue: tdrecipes_db
           description: Enter a databse name
 
         - id: $$cap_db_pass
