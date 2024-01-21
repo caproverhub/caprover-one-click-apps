@@ -11,8 +11,8 @@ caproverOneClickApp:
     variables:
         - id: $$cap_myapp_version
           label: Serge version
-          defaultValue: '0.6.0'
-          description: Check out their GitHub page for the valid tags https://github.com/nsarrazin/serge/pkgs/container/serge
+          defaultValue: '0.8.2'
+          description: Check out their GitHub page for the valid tags https://github.com/serge-chat/serge/pkgs/container/serge
           validRegex: '/.{1,}/'
     instructions:
         start: |-
@@ -21,6 +21,6 @@ caproverOneClickApp:
         end: |-
             Done! 🚀
     displayName: Serge LLaMa (AI)
-    isOfficial: false
-    description: A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API.
-    documentation: This docker-compose is taken from https://github.com/nsarrazin/serge
+    isOfficial: true
+    description: Serge is a chat interface crafted with llama.cpp for running GGUF models. No API keys, entirely self-hosted!
+    documentation: This docker-compose is taken from https://github.com/serge-chat/serge
