@@ -27,15 +27,11 @@
 
 | Name | Description |
 | ---- | ------------ |
-| [Ackee](https://ackee.electerious.com) | Node.js based analytics tool for those who care about privacy. |
 | [Apache Answer](https://answer.apache.org) | A Q&A platform software for teams. Whether it’s a community forum, help center, or knowledge management platform, you can always count on Answer. |
 | [Arma3Server](https://github.com/BrettMayson/Arma3Server) | Arma 3 Dedicated Server. |
-| [Chevereto](https://github.com/tanmng/docker-chevereto) | Ultimate image sharing software 🦄. |
-| [Duplicati](https://docs.linuxserver.io/images/docker-duplicati/) | Store securely encrypted backups in the cloud! |
 | [Emby](https://docs.linuxserver.io/images/docker-emby/) | Your personal media on any device. |
 | [Ganymede](https://github.com/Zibbp/ganymede) | Twitch VOD and Stream archiving platform with a rendered chat. |
 | [Heimdall](https://docs.linuxserver.io/images/docker-heimdall) | An Application dashboard and launcher. |
-| [Homepage](https://github.com/benphelps/homepage) | A modern, secure, highly customizable application dashboard. |
 | [Jackett](https://docs.linuxserver.io/images/docker-jackett) | API Support for your favorite torrent trackers. |
 | [Jellyseerr](https://github.com/Fallenbagel/jellyseerr) | Fork of overseerr for jellyfin support. |
 | [JoyBox](https://github.com/joyboxxx/joyBox) | Chaturbate Webcam Recorder. |
@@ -43,7 +39,6 @@
 | [Linkwarden](https://linkwarden.app/) | Bookmark manager to collect, organize, and preserve webpages. |
 | [Lychee](https://github.com/lycheeorg/lychee) | A great looking and easy-to-use photo-management-system. |
 | [Metube](https://github.com/alexta69/metube) | Web GUI for youtube-dl with playlist support. |
-| [Mixpost](https://mixpost.app) | Self-Hosted Social Media Management Software. |
 | [Navidrome](https://www.navidrome.org) | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |
 | [Porn Vault](https://gitlab.com/porn-vault/porn-vault) | Organizer for adult videos and imagery. |
 | [pgAdmin4](https://www.pgadmin.org/) | pgAdmin 4 is a rewrite of the popular pgAdmin3 management tool for the PostgreSQL. |
@@ -61,13 +56,9 @@
 | [Szurubooru](https://github.com/rr-/szurubooru) | Image board engine, Danbooru-style. |
 | [Trilium](https://github.com/zadam/trilium) | Build your personal knowledge base with Trilium Notes |
 | [Troddit](https://github.com/burhan-syed/troddit) | A web client for Reddit. |
-| [Uptime Kuma](https://github.com/louislam/uptime-kuma) | A fancy self-hosted monitoring tool |
-| [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | Unofficial Bitwarden compatible server written in Rust. |
 | [Vikunja](https://vikunja.io) | The open-source, self-hostable to-do app. Organize everything, on all platforms. |
-| [Webtop](https://github.com/linuxserver/docker-webtop) | Ubuntu and Alpine based Webtop images, Linux in a web browser. |
 | [Wizarr](https://github.com/wizarrrr/wizarr) | Wizarr is an advanced user invitation and management system for Jellyfin, Plex, Emby etc. |
 | [XBackBone](https://xbackbone.app) | A lightweight file manager with full ShareX, Screencloud support and more. |
-| [Yagpdb](https://yagpdb.xyz) | Yet another general purpose discord bot |
 | [YT-dlp-web](https://github.com/sooros5132/yt-dlp-web) | Self-hosted yt-dlp with the Web UI. |
 
 Feel free to explore, contribute, and enhance your CapRover experience with these one-click apps! 🚢✨
