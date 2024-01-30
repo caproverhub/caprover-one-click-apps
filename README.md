@@ -43,7 +43,6 @@
 | [Porn Vault](https://gitlab.com/porn-vault/porn-vault) | Organizer for adult videos and imagery. |
 | [pgAdmin4](https://www.pgadmin.org/) | pgAdmin 4 is a rewrite of the popular pgAdmin3 management tool for the PostgreSQL. |
 | [Photoview](https://github.com/viktorstrate/photoview) | Photo gallery for self-hosted personal servers. |
-| [pyLoad](https://pyload.net/) | The free and open-source Download Manager written in pure Python. |
 | [qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent) | qBittorrent BitTorrent client |
 | [Tandoor Recipes](https://tandoor.dev) | Manage your ever growing recipe collection online. |
 | [SABnzbd](https://sabnzbd.org) | SABnzbd - The automated Usenet download tool. |
