@@ -70,6 +70,7 @@ async function makeAppList(appFilenames) {
     appList: properAppFiles,
     appDetails,
   };
+  
 }
 
 /**
@@ -97,10 +98,50 @@ async function buildDist() {
 
     await fs.outputJson(path.join(V4_FOLDER, 'list'), list);
     await fs.copy(path.join(PUBLIC_FOLDER, 'CNAME'), path.join(DIST_FOLDER, 'CNAME'));
+    await createIndexHtml(allAppsList.appDetails);
   } catch (err) {
     console.error(err);
     process.exit(127);
   }
+}
+
+async function createIndexHtml(appList) {
+  const htmlContent = `
+    <html>
+      <head>
+        <title>Available Apps</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <style>
+          .app {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+          }
+          .app img {
+            width: 50px;
+            height: 50px;
+            margin-right: 1rem;
+          }
+        </style>
+      </head>
+      <body class="p-4 bg-gray-100">
+        <h1 class="text-2xl font-bold mb-4 text-center">Available Apps</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          ${appList.map(app => `
+            <div class="app bg-white rounded-lg p-4 shadow-md">
+              <img src="v4/logos/${app.name}.png" alt="${app.displayName} logo">
+              <div>
+                <h2 class="text-lg font-semibold">${app.displayName}</h2>
+                <p class="text-sm text-gray-600">${app.description}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </body>
+    </html>
+  `;
+
+  await fs.writeFile(path.join(DIST_FOLDER, 'index.html'), htmlContent);
 }
 
 /**
