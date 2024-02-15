@@ -4,7 +4,7 @@ services:
         image: ghcr.io/rogerfar/rdtclient:$$cap_rdt_version
         volumes:
             - $$cap_appname-db:/data/db
-            - $$cap_appname-dl:/data/downloads
+            - $$cap_dl:/data/downloads
         caproverExtra:
             containerHttpPort: 6500
 caproverOneClickApp:
@@ -15,7 +15,7 @@ caproverOneClickApp:
           description: Check out their GitHub page for the valid tags https://github.com/rogerfar/rdt-client/pkgs/container/rdtclient
           validRegex: '/.{1,}/'
 
-        - id: $$cap_appname-dl
+        - id: $$cap_dl
           label: Download path
           defaultValue: '/data/downloads'
           description: Your local path to download files to
