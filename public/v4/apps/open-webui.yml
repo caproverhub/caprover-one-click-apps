@@ -14,7 +14,7 @@ services:
     $$cap_appname-api:
         image: ollama/ollama:$$cap_ollama_version
         volumes:
-            - $$cap_appname-data:/root/.ollama
+            - $$cap_appname-api-data:/root/.ollama
         caproverExtra:
             notExposeAsWebApp: 'true'
 caproverOneClickApp:
