@@ -2,7 +2,7 @@ captainVersion: 4
 services:
     # Open wbeui
     $$cap_appname:
-        image: ghcr.io/open-webui/open-webui:main:$$cap_weui_version
+        image: ghcr.io/open-webui/open-webui:$$cap_weui_version
         environment:
             OLLAMA_API_BASE_URL: http://srv-captain--$$cap_appname-db:11434/api
             WEBUI_SECRET_KEY: $$cap_app_key
