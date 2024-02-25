@@ -107,35 +107,30 @@ async function buildDist() {
 
 async function createIndexHtml(appList) {
   const htmlContent = `
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
       <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Available Apps</title>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <style>
-          .app {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-          }
-          .app img {
-            width: 50px;
-            height: 50px;
-            margin-right: 1rem;
-          }
-        </style>
       </head>
-      <body class="p-4 bg-gray-100">
-        <h1 class="text-2xl font-bold mb-4 text-center">Available Apps</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          ${appList.map(app => `
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/${app.name}.png" alt="${app.displayName} logo">
-              <div>
-                <h2 class="text-lg font-semibold">${app.displayName}</h2>
-                <p class="text-sm text-gray-600">${app.description}</p>
+      <body class="bg-gradient-to-r from-gray-400 to-gray-600 min-h-screen flex items-center justify-center">
+        <div class="container mx-auto px-4 py-8">
+          <h1 class="text-4xl font-bold text-white text-center mb-12">Explore Our Apps</h1>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            ${appList.map(app => `
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/${app.logoUrl}" alt="${app.displayName} logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">${app.displayName}</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">${app.description}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          `).join('')}
+            `).join('')}
+          </div>
         </div>
       </body>
     </html>
