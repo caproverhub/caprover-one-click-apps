@@ -1,313 +1,378 @@
 
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
       <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Available Apps</title>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <style>
-          .app {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-          }
-          .app img {
-            width: 50px;
-            height: 50px;
-            margin-right: 1rem;
-          }
-        </style>
       </head>
-      <body class="p-4 bg-gray-100">
-        <h1 class="text-2xl font-bold mb-4 text-center">Available Apps</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/answer.png" alt="Answer logo">
-              <div>
-                <h2 class="text-lg font-semibold">Answer</h2>
-                <p class="text-sm text-gray-600">Build Q&A Platform with Apache Answer.</p>
+      <body class="bg-gradient-to-r from-gray-400 to-gray-600 min-h-screen flex items-center justify-center">
+        <div class="container mx-auto px-4 py-8">
+          <h1 class="text-4xl font-bold text-white text-center mb-12">Explore Our Apps</h1>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/answer.png" alt="Answer logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Answer</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Build Q&A Platform with Apache Answer.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/anythingllm.png" alt="AnythingLLM logo">
-              <div>
-                <h2 class="text-lg font-semibold">AnythingLLM</h2>
-                <p class="text-sm text-gray-600">AnythingLLM A private ChatGPT to chat with anything!.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/anythingllm.png" alt="AnythingLLM logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">AnythingLLM</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">AnythingLLM A private ChatGPT to chat with anything!.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/arma3.png" alt="Arma 3 Dedicated Server logo">
-              <div>
-                <h2 class="text-lg font-semibold">Arma 3 Dedicated Server</h2>
-                <p class="text-sm text-gray-600">An Arma 3 Dedicated Server. Updates to the latest version every time it is restarted.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/arma3.png" alt="Arma 3 Dedicated Server logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Arma 3 Dedicated Server</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">An Arma 3 Dedicated Server. Updates to the latest version every time it is restarted.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/emby.png" alt="Emby logo">
-              <div>
-                <h2 class="text-lg font-semibold">Emby</h2>
-                <p class="text-sm text-gray-600">Emby organizes video, music, live TV, and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/emby.png" alt="Emby logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Emby</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Emby organizes video, music, live TV, and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/ganymede.png" alt="Ganymede logo">
-              <div>
-                <h2 class="text-lg font-semibold">Ganymede</h2>
-                <p class="text-sm text-gray-600">Twitch VOD and Stream archiving platform with a rendered chat. Files are saved in a friendly format allowing for use without Ganymede.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/ganymede.png" alt="Ganymede logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Ganymede</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Twitch VOD and Stream archiving platform with a rendered chat. Files are saved in a friendly format allowing for use without Ganymede.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/heimdall.png" alt="Heimdall logo">
-              <div>
-                <h2 class="text-lg font-semibold">Heimdall</h2>
-                <p class="text-sm text-gray-600">Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/heimdall.png" alt="Heimdall logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Heimdall</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/jackett.png" alt="Jackett logo">
-              <div>
-                <h2 class="text-lg font-semibold">Jackett</h2>
-                <p class="text-sm text-gray-600">API Support for your favorite torrent trackers.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/jackett.png" alt="Jackett logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Jackett</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">API Support for your favorite torrent trackers.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/jellyseerr.png" alt="Jellyseerr logo">
-              <div>
-                <h2 class="text-lg font-semibold">Jellyseerr</h2>
-                <p class="text-sm text-gray-600">Fork of overseerr for jellyfin support</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/jellyseerr.png" alt="Jellyseerr logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Jellyseerr</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Fork of overseerr for jellyfin support</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/joybox.png" alt="JoyBox logo">
-              <div>
-                <h2 class="text-lg font-semibold">JoyBox</h2>
-                <p class="text-sm text-gray-600">Chaturbate Webcam Recorder.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/joybox.png" alt="JoyBox logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">JoyBox</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Chaturbate Webcam Recorder.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/librespeed.png" alt="Librespeed logo">
-              <div>
-                <h2 class="text-lg font-semibold">Librespeed</h2>
-                <p class="text-sm text-gray-600">Librespeed is a very lightweight Speedtest implemented in Javascript, using XMLHttpRequest and Web Workers. No Flash, No Java, No Websocket, No Bullshit.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/librespeed.png" alt="Librespeed logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Librespeed</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Librespeed is a very lightweight Speedtest implemented in Javascript, using XMLHttpRequest and Web Workers. No Flash, No Java, No Websocket, No Bullshit.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/linkwarden.png" alt="Linkwarden logo">
-              <div>
-                <h2 class="text-lg font-semibold">Linkwarden</h2>
-                <p class="text-sm text-gray-600">Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/linkwarden.png" alt="Linkwarden logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Linkwarden</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/lychee.png" alt="Lychee logo">
-              <div>
-                <h2 class="text-lg font-semibold">Lychee</h2>
-                <p class="text-sm text-gray-600">A great looking and easy-to-use photo-management-system.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/lychee.png" alt="Lychee logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Lychee</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">A great looking and easy-to-use photo-management-system.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/metube.png" alt="Metube logo">
-              <div>
-                <h2 class="text-lg font-semibold">Metube</h2>
-                <p class="text-sm text-gray-600">Web GUI for youtube-dl with playlist support. Allows you to download videos from YouTube and dozens of other sites.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/metube.png" alt="Metube logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Metube</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Web GUI for youtube-dl with playlist support. Allows you to download videos from YouTube and dozens of other sites.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/navidrome.png" alt="Navidrome logo">
-              <div>
-                <h2 class="text-lg font-semibold">Navidrome</h2>
-                <p class="text-sm text-gray-600">Modern Music Server and Streamer compatible with Subsonic/Airsonic</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/navidrome.png" alt="Navidrome logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Navidrome</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Modern Music Server and Streamer compatible with Subsonic/Airsonic</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/open-webui.png" alt="Open-webui logo">
-              <div>
-                <h2 class="text-lg font-semibold">Open-webui</h2>
-                <p class="text-sm text-gray-600">ChatGPT-Style Web Interface for Ollama 🦙</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/open-webui.png" alt="Open-webui logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Open-webui</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">ChatGPT-Style Web Interface for Ollama 🦙</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/p-vault.png" alt="Porn Vault logo">
-              <div>
-                <h2 class="text-lg font-semibold">Porn Vault</h2>
-                <p class="text-sm text-gray-600">💋 Manage your ever-growing porn collection. Using Vue & GraphQL</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/p-vault.png" alt="Porn Vault logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Porn Vault</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">💋 Manage your ever-growing porn collection. Using Vue & GraphQL</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/pgadmin.png" alt="pgAdmin4 logo">
-              <div>
-                <h2 class="text-lg font-semibold">pgAdmin4</h2>
-                <p class="text-sm text-gray-600">pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/pgadmin.png" alt="pgAdmin4 logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">pgAdmin4</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/photoview.png" alt="Photoview logo">
-              <div>
-                <h2 class="text-lg font-semibold">Photoview</h2>
-                <p class="text-sm text-gray-600">Photo gallery for self-hosted personal servers.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/photoview.png" alt="Photoview logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Photoview</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Photo gallery for self-hosted personal servers.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/qbittorrent.png" alt="qBittorrent logo">
-              <div>
-                <h2 class="text-lg font-semibold">qBittorrent</h2>
-                <p class="text-sm text-gray-600">qBittorrent BitTorrent client</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/qbittorrent.png" alt="qBittorrent logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">qBittorrent</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">qBittorrent BitTorrent client</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/rdt-client.png" alt="rdtclient logo">
-              <div>
-                <h2 class="text-lg font-semibold">rdtclient</h2>
-                <p class="text-sm text-gray-600">Real-Debrid Client Proxy</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/rdt-client.png" alt="rdtclient logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">rdtclient</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Real-Debrid Client Proxy</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/readeck.png" alt="Readeck logo">
-              <div>
-                <h2 class="text-lg font-semibold">Readeck</h2>
-                <p class="text-sm text-gray-600">See it as a bookmark manager and a read later tool.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/readeck.png" alt="Readeck logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Readeck</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">See it as a bookmark manager and a read later tool.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/recipes.png" alt="Tandoor Recipes logo">
-              <div>
-                <h2 class="text-lg font-semibold">Tandoor Recipes</h2>
-                <p class="text-sm text-gray-600">The recipe manager that allows you to manage your ever growing collection of digital recipes.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/recipes.png" alt="Tandoor Recipes logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Tandoor Recipes</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">The recipe manager that allows you to manage your ever growing collection of digital recipes.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/sabnzbd.png" alt="SABnzbd logo">
-              <div>
-                <h2 class="text-lg font-semibold">SABnzbd</h2>
-                <p class="text-sm text-gray-600">SABnzbd - The automated Usenet download tool.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/sabnzbd.png" alt="SABnzbd logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">SABnzbd</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">SABnzbd - The automated Usenet download tool.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/searxng.png" alt="SearXNG logo">
-              <div>
-                <h2 class="text-lg font-semibold">SearXNG</h2>
-                <p class="text-sm text-gray-600">Privacy-respecting, hackable metasearch engine</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/searxng.png" alt="SearXNG logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">SearXNG</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Privacy-respecting, hackable metasearch engine</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/serge.png" alt="Serge LLaMa (AI) logo">
-              <div>
-                <h2 class="text-lg font-semibold">Serge LLaMa (AI)</h2>
-                <p class="text-sm text-gray-600">Serge is a chat interface crafted with llama.cpp for running GGUF models. No API keys, entirely self-hosted!</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/serge.png" alt="Serge LLaMa (AI) logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Serge LLaMa (AI)</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Serge is a chat interface crafted with llama.cpp for running GGUF models. No API keys, entirely self-hosted!</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/shynet.png" alt="Shynet logo">
-              <div>
-                <h2 class="text-lg font-semibold">Shynet</h2>
-                <p class="text-sm text-gray-600">Modern, privacy-friendly, and cookie-free web analytics.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/shynet.png" alt="Shynet logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Shynet</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Modern, privacy-friendly, and cookie-free web analytics.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/slash.png" alt="Slash logo">
-              <div>
-                <h2 class="text-lg font-semibold">Slash</h2>
-                <p class="text-sm text-gray-600">An open source, self-hosted bookmarks and link sharing platform. Save and share your links very easily</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/slash.png" alt="Slash logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Slash</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">An open source, self-hosted bookmarks and link sharing platform. Save and share your links very easily</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/sonarr.png" alt="Sonarr logo">
-              <div>
-                <h2 class="text-lg font-semibold">Sonarr</h2>
-                <p class="text-sm text-gray-600">Sonarr (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/sonarr.png" alt="Sonarr logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Sonarr</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Sonarr (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/stash.png" alt="Stash logo">
-              <div>
-                <h2 class="text-lg font-semibold">Stash</h2>
-                <p class="text-sm text-gray-600">An organizer for your porn, written in Go</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/stash.png" alt="Stash logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Stash</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">An organizer for your porn, written in Go</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/szurubooru.png" alt="Szurubooru logo">
-              <div>
-                <h2 class="text-lg font-semibold">Szurubooru</h2>
-                <p class="text-sm text-gray-600">Image board engine, Danbooru-style.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/szurubooru.png" alt="Szurubooru logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Szurubooru</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Image board engine, Danbooru-style.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/trilium.png" alt="Trilium logo">
-              <div>
-                <h2 class="text-lg font-semibold">Trilium</h2>
-                <p class="text-sm text-gray-600">Build your personal knowledge base with Trilium Notes</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/trilium.png" alt="Trilium logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Trilium</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Build your personal knowledge base with Trilium Notes</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/troddit.png" alt="Troddit logo">
-              <div>
-                <h2 class="text-lg font-semibold">Troddit</h2>
-                <p class="text-sm text-gray-600">A web client for Reddit with authenticated logins and a variety of browsing options.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/troddit.png" alt="Troddit logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Troddit</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">A web client for Reddit with authenticated logins and a variety of browsing options.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/vikunja.png" alt="Vikunja logo">
-              <div>
-                <h2 class="text-lg font-semibold">Vikunja</h2>
-                <p class="text-sm text-gray-600">The open-source, self-hostable to-do app. Organize everything, on all platforms.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/vikunja.png" alt="Vikunja logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Vikunja</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">The open-source, self-hostable to-do app. Organize everything, on all platforms.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/wizarr.png" alt="Wizarr logo">
-              <div>
-                <h2 class="text-lg font-semibold">Wizarr</h2>
-                <p class="text-sm text-gray-600">Wizarr is an advanced user invitation and management system for Jellyfin, Plex, Emby etc.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/wizarr.png" alt="Wizarr logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Wizarr</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Wizarr is an advanced user invitation and management system for Jellyfin, Plex, Emby etc.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/xbackbone.png" alt="XBackBone logo">
-              <div>
-                <h2 class="text-lg font-semibold">XBackBone</h2>
-                <p class="text-sm text-gray-600">A lightweight file manager with full ShareX, Screencloud support and more.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/xbackbone.png" alt="XBackBone logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">XBackBone</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">A lightweight file manager with full ShareX, Screencloud support and more.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
-            <div class="app bg-white rounded-lg p-4 shadow-md">
-              <img src="v4/logos/yt-dlp-web.png" alt="yt-dlp-web logo">
-              <div>
-                <h2 class="text-lg font-semibold">yt-dlp-web</h2>
-                <p class="text-sm text-gray-600">Self-hosted yt-dlp with the Web UI. You can watch or download videos downloaded to a remote server.</p>
+            
+              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-24 h-24 mx-auto" src="v4/logos/yt-dlp-web.png" alt="yt-dlp-web logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">yt-dlp-web</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Self-hosted yt-dlp with the Web UI. You can watch or download videos downloaded to a remote server.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          
+            
+          </div>
         </div>
       </body>
     </html>
