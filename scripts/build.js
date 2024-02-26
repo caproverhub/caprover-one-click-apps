@@ -98,6 +98,7 @@ async function buildDist() {
 
     await fs.outputJson(path.join(V4_FOLDER, 'list'), list);
     await fs.copy(path.join(PUBLIC_FOLDER, 'CNAME'), path.join(DIST_FOLDER, 'CNAME'));
+    await fs.copy(path.join(PUBLIC_FOLDER, 'logo-transparent.png'), path.join(DIST_FOLDER, 'logo-transparent.png'));
     await createIndexHtml(allAppsList.appDetails);
   } catch (err) {
     console.error(err);
@@ -113,16 +114,18 @@ async function createIndexHtml(appList) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Available Apps</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
       </head>
-      <body class="bg-gradient-to-r from-gray-400 to-gray-600 min-h-screen flex items-center justify-center">
+      <body class="bg-gradient-to-r from-indigo-950 via-purple-950 to-indigo-950 min-h-screen flex items-center justify-center">
         <div class="container mx-auto px-4 py-8">
-          <h1 class="text-4xl font-bold text-white text-center mb-12">Explore Our Apps</h1>
+        <div class="text-center mb-12">
+          <img src="logo-transparent.png" alt="Logo" class="mx-auto hover:scale-110 transform transition duration-500 w-auto h-12">
+        </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             ${appList.map(app => `
-              <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition duration-500 hover:scale-105">
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
                 <div class="p-4">
-                  <img class="w-24 h-24 mx-auto" src="v4/logos/${app.logoUrl}" alt="${app.displayName} logo">
+                  <img class="w-16 h-16 mx-auto" src="v4/logos/${app.logoUrl}" alt="${app.displayName} logo">
                   <div class="py-4">
                     <h2 class="text-2xl font-semibold text-center">${app.displayName}</h2>
                     <p class="text-gray-700 text-sm text-center mt-2">${app.description}</p>
