@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Custom One Click App Repository for CapRover",
   "scripts": {
-    "format": "prettier --check \"./public/**/*.{json,yml}\"",
+    "format": "prettier --debug-check \"./public/**/*.{json,yml}\"",
     "format:write": "prettier --write \"./public/**/*.{json,yml}\"",
     "build": "rimraf ./dist/ && mkdirp dist && node ./scripts/build.js",
     "validate": "node ./scripts/validate_apps.js",
