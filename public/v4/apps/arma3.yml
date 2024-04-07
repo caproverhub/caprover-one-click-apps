@@ -25,6 +25,13 @@ services:
             - $$cap_appname-mods:/arma3/mods
             - $$cap_appname-servermods:/arma3/servermods
             - $$cap_appname-steamcmd:/steamcmd
+            - $$cap_appname-addons:/arma3/addons
+            - $$cap_appname-enoch:/arma3/enoch
+            - $$cap_appname-expansion:/arma3/expansion
+            - $$cap_appname-jets:/arma3/jets
+            - $$cap_appname-heli:/arma3/heli
+            - $$cap_appname-orange:/arma3/orange
+            - $$cap_appname-argo:/arma3/argo
         ports:
             - $$cap_A3port:2302
             - $$cap_SteamQuery:2303
