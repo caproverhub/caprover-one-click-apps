@@ -21,8 +21,8 @@ dependencies:
     specifier: ^5.0.7
     version: 5.0.7
   yaml:
-    specifier: ^2.4.3
-    version: 2.4.3
+    specifier: ^2.4.4
+    version: 2.4.4
 
 packages:
 
@@ -532,8 +532,8 @@ packages:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: false
 
-  /yaml@2.4.3:
-    resolution: {integrity: sha512-sntgmxj8o7DE7g/Qi60cqpLBA3HG3STcDA0kO+WfB05jEKhZMbY7umNm2rBpQvsmZ16/lPXCJGW2672dgOUkrg==}
+  /yaml@2.4.4:
+    resolution: {integrity: sha512-wle6DEiBMLgJAdEPZ+E8BPFauoWbwPujfuGJJFErxYiU4txXItppe8YqeFPAaWnW5CxduQ995X6b5e1NqrmxtA==}
     engines: {node: '>= 14'}
     hasBin: true
     dev: false
