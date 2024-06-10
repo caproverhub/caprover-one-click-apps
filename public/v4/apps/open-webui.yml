@@ -4,7 +4,7 @@ services:
     $$cap_appname:
         image: ghcr.io/open-webui/open-webui:$$cap_weui_version
         environment:
-            OLLAMA_API_BASE_URL: http://srv-captain--$$cap_appname-api:11434/api
+            OLLAMA_BASE_URL: http://srv-captain--$$cap_appname-api:11434
             WEBUI_SECRET_KEY: $$cap_app_key
         volumes:
             - $$cap_appname-data:/app/backend/data
@@ -21,12 +21,12 @@ caproverOneClickApp:
     variables:
         - id: $$cap_weui_version
           label: Open webui Version
-          defaultValue: 'main'
+          defaultValue: 'v0.3.1'
           description: Checkout their docker page for the valid tags https://github.com/open-webui/open-webui/pkgs/container/open-webui
 
         - id: $$cap_ollama_version
           label: Ollama Version
-          defaultValue: '0.1.25'
+          defaultValue: '0.1.42'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/ollama/ollama/tags
 
         - id: $$cap_app_key
