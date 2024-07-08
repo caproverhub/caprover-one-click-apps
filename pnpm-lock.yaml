@@ -18,8 +18,8 @@ dependencies:
     specifier: ^3.3.2
     version: 3.3.2
   rimraf:
-    specifier: ^5.0.8
-    version: 5.0.8
+    specifier: ^5.0.9
+    version: 5.0.9
   yaml:
     specifier: ^2.4.5
     version: 2.4.5
@@ -422,9 +422,9 @@ packages:
     hasBin: true
     dev: false
 
-  /rimraf@5.0.8:
-    resolution: {integrity: sha512-XSh0V2/yNhDEi8HwdIefD8MLgs4LQXPag/nEJWs3YUc3Upn+UHa1GyIkEg9xSSNt7HnkO5FjTvmcRzgf+8UZuw==}
-    engines: {node: '>=18'}
+  /rimraf@5.0.9:
+    resolution: {integrity: sha512-3i7b8OcswU6CpU8Ej89quJD4O98id7TtVM5U4Mybh84zQXdrFmDLouWBEEaD/QfO3gDDfH+AGFCGsR7kngzQnA==}
+    engines: {node: 14 >=14.20 || 16 >=16.20 || >=18}
     hasBin: true
     dependencies:
       glob: 10.3.10
