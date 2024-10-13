@@ -21,8 +21,8 @@ dependencies:
     specifier: ^6.0.1
     version: 6.0.1
   yaml:
-    specifier: ^2.5.1
-    version: 2.5.1
+    specifier: ^2.6.0
+    version: 2.6.0
 
 packages:
 
@@ -590,8 +590,8 @@ packages:
       strip-ansi: 7.1.0
     dev: false
 
-  /yaml@2.5.1:
-    resolution: {integrity: sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==}
+  /yaml@2.6.0:
+    resolution: {integrity: sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==}
     engines: {node: '>= 14'}
     hasBin: true
     dev: false
