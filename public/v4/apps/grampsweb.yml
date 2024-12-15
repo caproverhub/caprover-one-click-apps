@@ -4,6 +4,8 @@ services:
         image: redis:$$cap_redis_version
         container_name: $$cap_appname-redis
         restart: always
+        volumes:
+            - $$cap_appname-redis-data:/data
         caproverExtra:
             notExposeAsWebApp: 'true'
     $$cap_appname:
@@ -56,7 +58,7 @@ caproverOneClickApp:
         - id: $$cap_version
           label: Version Tag
           description: Check out their GitHub page for the valid tags https://github.com/gramps-project/Gramps.js/pkgs/container/grampsweb
-          defaultValue: 'v24.5.0'
+          defaultValue: 'v24.12.1'
         - id: $$cap_redis_version
           label: Redis Version
           defaultValue: 7.2.4-alpine
