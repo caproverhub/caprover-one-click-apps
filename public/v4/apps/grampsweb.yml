@@ -74,4 +74,4 @@ caproverOneClickApp:
     displayName: Gramps Web
     isOfficial: true
     description: Web frontend for the Gramps genealogical research system.
-    documentation: Taken from https://gramps-project.github.io/web/Deployment/
+    documentation: Taken from https://github.com/gramps-project/gramps-web-docs/blob/main/examples/docker-compose-base/docker-compose.yml
