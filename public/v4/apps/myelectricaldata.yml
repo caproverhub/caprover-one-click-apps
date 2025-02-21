@@ -31,6 +31,7 @@ caproverOneClickApp:
             Done!
             Create a `/var/lib/docker/volumes/captain--$$cap_appname-data/_data/config.yaml` with https://github.com/MyElectricalData/myelectricaldata_import/blob/main/config.example.yaml
             More documentation available here: https://github.com/MyElectricalData/myelectricaldata_import/wiki/03.-Configuration
+            For Home Assistant integration see https://github.com/MyElectricalData/myelectricaldata_import/wiki/90.-Change-Log#home-assistant
     displayName: MyElectricalData
     isOfficial: true
     description: 📊 MyElectricalData is official client for gateway MyElectricaData to import your electricity consumption.
