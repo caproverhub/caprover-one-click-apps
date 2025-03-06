@@ -47,18 +47,17 @@ services:
         container_name: $$cap_appname-celery
         depends_on:
             - $$cap_appname-redis
+        image: ghcr.io/gramps-project/grampsweb:$$cap_version
+        command: ['sh', '-c', 'celery -A gramps_webapi.celery worker --loglevel=INFO']
         caproverExtra:
             notExposeAsWebApp: 'true'
-            dockerfileLines:
-                - FROM ghcr.io/gramps-project/grampsweb:$$cap_version
-                - CMD exec celery -A gramps_webapi.celery worker --loglevel=INFO
 
 caproverOneClickApp:
     variables:
         - id: $$cap_version
           label: Version Tag
           description: Check out their GitHub page for the valid tags https://github.com/gramps-project/Gramps.js/pkgs/container/grampsweb
-          defaultValue: 'v24.12.1'
+          defaultValue: 'v25.2.0'
         - id: $$cap_redis_version
           label: Redis Version
           defaultValue: 7.2.4-alpine
