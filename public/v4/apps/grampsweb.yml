@@ -58,7 +58,7 @@ caproverOneClickApp:
         - id: $$cap_version
           label: Version Tag
           description: Check out their GitHub page for the valid tags https://github.com/gramps-project/Gramps.js/pkgs/container/grampsweb
-          defaultValue: 'v24.12.1'
+          defaultValue: 'v25.5.1'
         - id: $$cap_redis_version
           label: Redis Version
           defaultValue: 7.2.4-alpine
