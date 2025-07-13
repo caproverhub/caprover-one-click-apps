@@ -42,7 +42,7 @@ caproverOneClickApp:
     variables:
         - id: $$cap_linkwarden_version
           label: Linkwarden Version
-          defaultValue: v2.2.1
+          defaultValue: v2.11.3
           description: Check https://github.com/linkwarden/linkwarden/pkgs/container/linkwarden for valid tags
 
         - id: $$cap_app_key
