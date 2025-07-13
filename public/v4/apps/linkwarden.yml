@@ -8,6 +8,7 @@ services:
             NEXTAUTH_URL: https://$$cap_appname.$$cap_root_domain
             POSTGRES_PASSWORD: $$cap_db_pass
             MEILI_MASTER_KEY: $$cap_meili_master_key
+            MEILI_HOST : http://srv-captain--$$cap_appname-meili:7700
             DATABASE_URL: postgresql://$$cap_db_user:$$cap_db_pass@srv-captain--$$cap_appname-db:5432/$$cap_db_name
         volumes:
             - $$cap_appname-data:/data/data
