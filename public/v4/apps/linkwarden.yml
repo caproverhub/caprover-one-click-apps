@@ -7,14 +7,19 @@ services:
             NEXTAUTH_SECRET: $$cap_app_key
             NEXTAUTH_URL: https://$$cap_appname.$$cap_root_domain
             POSTGRES_PASSWORD: $$cap_db_pass
+            MEILI_MASTER_KEY: $$cap_meili_master_key
+            MEILI_HOST : http://srv-captain--$$cap_appname-meili:7700
             DATABASE_URL: postgresql://$$cap_db_user:$$cap_db_pass@srv-captain--$$cap_appname-db:5432/$$cap_db_name
         volumes:
             - $$cap_appname-data:/data/data
         caproverExtra:
             containerHttpPort: 3000
+        depends_on:
+            - $$cap_appname-db
+            - $$cap_appname-meili
     # Postgres
     $$cap_appname-db:
-        image: postgres:12-alpine
+        image: postgres:16-alpine
         environment:
             POSTGRES_USER: $$cap_db_user
             POSTGRES_DB: $$cap_db_name
@@ -23,39 +28,58 @@ services:
             - $$cap_appname-db-data:/var/lib/postgresql/data
         caproverExtra:
             notExposeAsWebApp: 'true'
+
+    # MeiliSearch
+    $$cap_appname-meili:
+        image: getmeili/meilisearch:v1.2.0
+        environment:
+            MEILI_MASTER_KEY: $$cap_meili_master_key
+        volumes:
+            - $$cap_appname-meili-data:/meili_data
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+
 caproverOneClickApp:
     variables:
         - id: $$cap_linkwarden_version
           label: Linkwarden Version
-          defaultValue: v2.2.1
-          description: Checkout their docker page for the valid tags https://github.com/linkwarden/linkwarden/pkgs/container/linkwarden
+          defaultValue: v2.11.3
+          description: Check https://github.com/linkwarden/linkwarden/pkgs/container/linkwarden for valid tags
 
         - id: $$cap_app_key
-          label: Secret Key
-          description: Secret key.
+          label: NextAuth Secret Key
           defaultValue: $$cap_gen_random_hex(24)
+          description: Used to sign session tokens. Must be random and secret.
+
+        - id: $$cap_meili_master_key
+          label: MeiliSearch Master Key
+          defaultValue: $$cap_gen_random_hex(24)
+          description: Master key for MeiliSearch authentication.
 
         - id: $$cap_db_user
-          label: Postgres database user
+          label: Postgres Database User
           defaultValue: linkwarden
-          description: Enter a user for database
+          description: Username for the Postgres database
 
         - id: $$cap_db_name
-          label: Postgres database name
+          label: Postgres Database Name
           defaultValue: linkwarden_db
-          description: Enter a databse name
+          description: Name of the Postgres database
 
         - id: $$cap_db_pass
-          label: Postgres database password
+          label: Postgres Database Password
           defaultValue: $$cap_gen_random_hex(24)
-          description: Enter database password
+          description: Password for the Postgres user
+
     instructions:
         start: >-
-            Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages.
+            Linkwarden is a self-hosted, collaborative bookmark manager to collect, organize, and preserve webpages.
+            This one-click app will install Linkwarden with Postgres and MeiliSearch.
+
         end: >-
-            Aaaand you're done! 😄
-            Your service is available at https://$$cap_appname.$$cap_root_domain
+            🎉 All done! Visit your Linkwarden instance at https://$$cap_appname.$$cap_root_domain
+
     displayName: Linkwarden
     isOfficial: true
     description: Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages.
-    documentation: Taken from https://docs.linkwarden.app/self-hosting/installation.
+    documentation: Taken from https://docs.linkwarden.app/self-hosting/installation
