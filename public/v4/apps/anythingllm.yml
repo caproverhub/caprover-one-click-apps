@@ -9,15 +9,19 @@ services:
             GENERATE_SOURCEMAP: 'false'
             DISABLE_TELEMETRY: 'true'
             VITE_API_BASE: http://srv-captain--$$cap_appname:3001/api
+            STORAGE_DIR: /app/server/storage
         volumes:
+            - $$cap_appname-server:/app/server/
             - $$cap_appname-storage:/app/server/storage
+            - $$cap_appname-hotdir:/app/server/hotdir
+            - $$cap_appname-outputs:/app/server/outputs
         caproverExtra:
             containerHttpPort: 3001
 caproverOneClickApp:
     variables:
         - id: $$cap_llm_version
           label: Anythingllm Version
-          defaultValue: 'latest'
+          defaultValue: '1.8.5'
           description: Checkout their docker page for the valid tags https://hub.docker.com/r/mintplexlabs/anythingllm/tags
 
         - id: $$cap_uid
