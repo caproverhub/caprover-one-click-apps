@@ -29,8 +29,11 @@ services:
         caproverExtra:
             containerHttpPort: '5000'
     $$cap_appname-celery:
+        image: ghcr.io/gramps-project/grampsweb:$$cap_version
         restart: always
+        command: celery -A gramps_webapi.celery worker --loglevel=INFO
         environment:
+            GRAMPSWEB_SECRET_KEY: $$cap_secret_key
             GRAMPSWEB_TREE: 'Gramps Web' # will create a new tree if not exists
             GRAMPSWEB_CELERY_CONFIG__broker_url: 'redis://srv-captain--$$cap_appname-redis:6379/0'
             GRAMPSWEB_CELERY_CONFIG__result_backend: 'redis://srv-captain--$$cap_appname-redis:6379/0'
@@ -49,21 +52,23 @@ services:
             - $$cap_appname-redis
         caproverExtra:
             notExposeAsWebApp: 'true'
-            dockerfileLines:
-                - FROM ghcr.io/gramps-project/grampsweb:$$cap_version
-                - CMD exec celery -A gramps_webapi.celery worker --loglevel=INFO
 
 caproverOneClickApp:
     variables:
         - id: $$cap_version
           label: Version Tag
           description: Check out their GitHub page for the valid tags https://github.com/gramps-project/Gramps.js/pkgs/container/grampsweb
-          defaultValue: 'v25.5.1'
+          defaultValue: '26.5.3'
         - id: $$cap_redis_version
           label: Redis Version
-          defaultValue: 7.2.4-alpine
+          defaultValue: 7.2.13-alpine
           description: Check out their Docker page for the valid tags https://hub.docker.com/_/redis?tab=tags
           validRegex: /^([^\s^\/])+$/
+        - id: $$cap_secret_key
+          label: Flask Secret Key
+          description: Auto-generated if empty
+          defaultValue: $$cap_gen_random_hex(32)
+          validRegex: /.{1,}/
     instructions:
         start: |-
             Gramps Web is a web app for collaborative genealogy. It is based on and interoperable with Gramps, the leading open source genealogy desktop application.
