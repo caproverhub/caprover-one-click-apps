@@ -15,7 +15,7 @@ caproverOneClickApp:
     variables:
         - id: '$$cap_app_version'
           label: Document Server Version
-          description: Check out their Docker page for the valid tags https://hub.docker.com/r/onlyoffice/documentserver/tags
+          description: Check out their Docker page for the valid tags https://github.com/Euro-Office/DocumentServer/pkgs/container/documentserver
           defaultValue: 'v9.3.2'
           validRegex: '/.{1,}/'
         - id: $$cap_secret_enable
