@@ -1,0 +1,87 @@
+captainVersion: 4
+services:
+    $$cap_appname:
+        image: yeetzone/dontstarvetogether:$$cap_version
+        environment:
+            NAME: $$cap_name
+            PASSWORD: $$cap_password
+            WORLD_PRESET: SURVIVAL_TOGETHER
+            SHARD_ENABLE: "true"
+            SHARD_IS_MASTER: "true"
+            SHARD_NAME: overworld
+            SHARD_MASTER_PORT: 10888
+            SHARD_CLUSTER_KEY: secret
+            TOKEN: $$cap_token
+        volumes:
+            - $$cap_appname-data:/data
+        ports:
+            - $$cap_port1:10999
+            - 10888:10888
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+    $$cap_appname-underworld:
+        image: yeetzone/dontstarvetogether:$$cap_version
+        environment:
+            WORLD_PRESET: DST_CAVE
+            SHARD_ENABLE: "true"
+            SHARD_IS_MASTER: "false"
+            SHARD_NAME: underworld
+            SHARD_MASTER_IP: $$cap_appname
+            SHARD_MASTER_PORT: 10888
+            SERVER_PORT: 11000
+            SHARD_CLUSTER_KEY: secret
+            TOKEN: $$cap_token
+        volumes:
+            - $$cap_appname-data:/data
+        ports:
+            - $$cap_port2:11000
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+    $$cap_appname-data:
+        image: yeetzone/dontstarvetogether-data:$$cap_version
+        volumes:
+            - $$cap_appname-data:/data
+        caproverExtra:
+            notExposeAsWebApp: 'true'
+caproverOneClickApp:
+    variables:
+        - id: $$cap_version
+          label: Dont Starve Version
+          defaultValue: 'latest'
+          description: Check out their Docker page for the valid tags https://docker.com
+          validRegex: /^([^\s^\/])+$/
+
+        - label: Server token
+          description: Generate a token by following this guide, https://servers4gamers.com
+          defaultValue: 'Must be filled'
+          id: $$cap_token
+
+        - label: Server name
+          description: Sets the server's name. Shows up on the public server-list and in-game. Setting a custom server-name is not required but highly recommended. If no name is configured, a random name will be generated.
+          defaultValue: Server Cluster Recipe
+          id: $$cap_name
+
+        - label: Password
+          description: Defines a server password so only players knowing the password can connect. Leave empty for no password.
+          defaultValue: 
+          id: $$cap_password
+
+        - label: Port1
+          description: Public Overworld connection port (UDP)
+          defaultValue: 10999
+          id: $$cap_port1
+
+        - label: Port2
+          description: Public Underworld/Caves connection port (UDP)
+          defaultValue: 11000
+          id: $$cap_port2
+
+    instructions:
+        start: |-
+            Docker images for dst 
+        end: |-
+            Don't Starve Together has been successfully deployed! Please wait until full steam download.
+    displayName: Don't Starve Together
+    isOfficial: false
+    description: Don't Starve is a survival game developed and published by Klei Entertainment.
+    documentation: See https://github.com/yeet-zone/docker-dontstarvetogether/blob/master/docs/recipes/cluster/docker-compose.yml
