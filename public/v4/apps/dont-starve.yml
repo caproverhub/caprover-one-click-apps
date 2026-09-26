@@ -14,7 +14,6 @@ services:
             TOKEN: $$cap_token
         volumes:
             - $$cap_appname-data:/data
-            - $$cap_appname-storage:/opt/storage
         ports:
             - $$cap_port1:10999
             - 10888:10888
@@ -34,7 +33,6 @@ services:
             TOKEN: $$cap_token
         volumes:
             - $$cap_appname-data:/data
-            - $$cap_appname-storage:/opt/storage
         ports:
             - $$cap_port2:11000
         caproverExtra:
@@ -50,31 +48,37 @@ caproverOneClickApp:
         - id: $$cap_version
           label: Dont Starve Version
           defaultValue: 'latest'
-          description: Check out their Docker page for the valid tags https://docker.com
+          description: Check out their Docker page for the valid tags https://hub.docker.com/r/yeetzone/dontstarvetogether/tags
           validRegex: /^([^\s^\/])+$/
+
         - label: Server token
-          description: Generate a token by following this guide, https://servers4gamers.com
+          description: Generate a token by following this guide, https://servers4gamers.com/blog/how-to-create-token-for-a-dont-starve-together-server/
           defaultValue: 'Must be filled'
           id: $$cap_token
+
         - label: Server name
           description: Sets the server's name. Shows up on the public server-list and in-game. Setting a custom server-name is not required but highly recommended. If no name is configured, a random name will be generated.
           defaultValue: Server Cluster Recipe
           id: $$cap_name
+
         - label: Password
           description: Defines a server password so only players knowing the password can connect. Leave empty for no password.
           defaultValue: 
           id: $$cap_password
+
         - label: Port1
           description: Public Overworld connection port (UDP)
           defaultValue: 10999
           id: $$cap_port1
+
         - label: Port2
           description: Public Underworld/Caves connection port (UDP)
           defaultValue: 11000
           id: $$cap_port2
+
     instructions:
         start: |-
-            Dockerfile for building a Don't Starve Together dedicated server image. 
+            Docker images for dst 
         end: |-
             Don't Starve Together has been successfully deployed! Please wait until full steam download.
     displayName: Don't Starve Together
