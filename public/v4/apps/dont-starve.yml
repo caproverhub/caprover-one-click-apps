@@ -1,87 +1,88 @@
 captainVersion: 4
-services:
-    $$cap_appname:
-        image: yeetzone/dontstarvetogether:$$cap_version
-        environment:
-            NAME: $$cap_name
-            PASSWORD: $$cap_password
-            WORLD_PRESET: SURVIVAL_TOGETHER
-            SHARD_ENABLE: "true"
-            SHARD_IS_MASTER: "true"
-            SHARD_NAME: overworld
-            SHARD_MASTER_PORT: 10888
-            SHARD_CLUSTER_KEY: secret
-            TOKEN: $$cap_token
-        volumes:
-            - $$cap_appname-data:/data
-        ports:
-            - $$cap_port1:10999
-            - 10888:10888
-        caproverExtra:
-            notExposeAsWebApp: 'true'
-    $$cap_appname-underworld:
-        image: yeetzone/dontstarvetogether:$$cap_version
-        environment:
-            WORLD_PRESET: DST_CAVE
-            SHARD_ENABLE: "true"
-            SHARD_IS_MASTER: "false"
-            SHARD_NAME: underworld
-            SHARD_MASTER_IP: http://$$cap_appname
-            SHARD_MASTER_PORT: 10888
-            SERVER_PORT: 11000
-            SHARD_CLUSTER_KEY: secret
-            TOKEN: $$cap_token
-        volumes:
-            - $$cap_appname-data:/data
-        ports:
-            - $$cap_port2:11000
-        caproverExtra:
-            notExposeAsWebApp: 'true'
-    $$cap_appname-data:
-        image: yeetzone/dontstarvetogether-data:$$cap_version
-        volumes:
-            - $$cap_appname-data:/data
-        caproverExtra:
-            notExposeAsWebApp: 'true'
+
 caproverOneClickApp:
-    variables:
-        - id: $$cap_version
-          label: Dont Starve Version
-          defaultValue: 'latest'
-          description: Check out their Docker page for the valid tags https://hub.docker.com/r/yeetzone/dontstarvetogether/tags
-          validRegex: /^([^\s^\/])+$/
+  instructions:
+    start: "Ce modèle installe un serveur dédié complet Don't Starve Together subdivisé en 2 instances (Master pour la surface et Caves pour le sous-sol)."
+    end: "Le déploiement est lancé ! ATTENTION : Vous devez impérativement ouvrir les ports UDP configurés (ex: 10999, 10888, 11000, 27017, 27018, 8767, 8768) sur le pare-feu externe de votre machine hôte pour permettre aux joueurs de se connecter."
+  variables:
+    - id: '$$cap_dst_token'
+      label: "Klei Cluster Token"
+      description: "Le jeton obligatoire obtenu via le portail officiel Klei."
+      validRegex: "/.{5,}/"
+    - id: '$$cap_dst_server_name'
+      label: "Nom du Serveur"
+      defaultValue: "Mon Serveur CapRover DST"
+      description: "Le nom affiché dans la liste des serveurs publics."
+    - id: '$$cap_dst_password'
+      label: "Mot de passe"
+      defaultValue: ""
+      description: "Laissez vide si vous souhaitez un accès public."
+    - id: '$$cap_dst_max_players'
+      label: "Joueurs max"
+      defaultValue: "6"
+      description: "Nombre de slots disponibles."
+    - id: '$$cap_dst_game_mode'
+      label: "Mode de jeu"
+      defaultValue: "survival"
+      description: "Options valides : survival, endless, wilderness."
+  description: "Serveur dédié Don't Starve Together avec gestion simultanée de la surface et des grottes via l'image dockhippie/dst."
 
-        - label: Server token
-          description: Generate a token by following this guide, https://servers4gamers.com/blog/how-to-create-token-for-a-dont-starve-together-server/
-          defaultValue: 'Must be filled'
-          id: $$cap_token
+services:
+  # --- SERVEUR SURFACE ---
+  $$cap_appname-master:
+    image: webhippie/dst:latest
+    containerHttpPort: 10999
+    notExposeAsWebApp: true
+    restart: always
+    environment:
+      DST_CLUSTER_TOKEN: $$cap_dst_token
+      DST_NETWORK_CLUSTER_NAME: $$cap_dst_server_name
+      DST_NETWORK_CLUSTER_PASSWORD: $$cap_dst_password
+      DST_GAMEPLAY_MAX_PLAYERS: $$cap_dst_max_players
+      DST_GAMEPLAY_GAME_MODE: $$cap_dst_game_mode
+      DST_GAMEPLAY_PAUSE_WHEN_EMPTY: "true"
+      DST_SHARD_ENABLED: "true"
+      DST_SHARD_NAME: "Master"
+      DST_SHARD_ID: "1"
+      DST_SHARD_IS_MASTER: "true"
+      DST_SHARD_BIND_IP: "0.0.0.0"
+      DST_NETWORK_SERVER_PORT: "10999"
+      DST_SHARD_MASTER_PORT: "10888"
+      DST_STEAM_MASTER_SERVER_PORT: "27017"
+      DST_STEAM_AUTHENTICATION_PORT: "8767"
+    volumes:
+      - $$cap_appname-shared-data:/var/lib/game
+    ports:
+      - "10999:10999"
+      - "10888:10888"
+      - "27017:27017"
+      - "8767:8767"
+    caproverExtra:
+      notExposeAsWebApp: 'true'
 
-        - label: Server name
-          description: Sets the server's name. Shows up on the public server-list and in-game. Setting a custom server-name is not required but highly recommended. If no name is configured, a random name will be generated.
-          defaultValue: Server Cluster Recipe
-          id: $$cap_name
-
-        - label: Password
-          description: Defines a server password so only players knowing the password can connect. Leave empty for no password.
-          defaultValue: 
-          id: $$cap_password
-
-        - label: Port1
-          description: Public Overworld connection port (UDP)
-          defaultValue: 10999
-          id: $$cap_port1
-
-        - label: Port2
-          description: Public Underworld/Caves connection port (UDP)
-          defaultValue: 11000
-          id: $$cap_port2
-
-    instructions:
-        start: |-
-            Docker images for dst 
-        end: |-
-            Don't Starve Together has been successfully deployed! Please wait until full steam download.
-    displayName: Don't Starve Together
-    isOfficial: false
-    description: Don't Starve is a survival game developed and published by Klei Entertainment.
-    documentation: See https://github.com/yeet-zone/docker-dontstarvetogether/blob/master/docs/recipes/cluster/docker-compose.yml
+  # --- SERVEUR GROTTES ---
+  $$cap_appname-caves:
+    image: webhippie/dst:latest
+    containerHttpPort: 11000
+    notExposeAsWebApp: true
+    restart: always
+    environment:
+      DST_CLUSTER_TOKEN: $$cap_dst_token
+      DST_SHARD_ENABLED: "true"
+      DST_SHARD_NAME: "Caves"
+      DST_SHARD_ID: "2"
+      DST_SHARD_IS_MASTER: "false"
+      DST_SHARD_MASTER_IP: http://$$cap_appname-master
+      DST_SHARD_MASTER_PORT: "10888"
+      DST_NETWORK_SERVER_PORT: "11000"
+      DST_STEAM_MASTER_SERVER_PORT: "27018"
+      DST_STEAM_AUTHENTICATION_PORT: "8768"
+      DST_OVERRIDE_PRESET: "Caves"
+    volumes:
+      - $$cap_appname-shared-data:/var/lib/game
+    ports:
+      - "11000:11000"
+      - "27018:27018"
+      - "8768:8768"
+    caproverExtra:
+      notExposeAsWebApp: 'true'
