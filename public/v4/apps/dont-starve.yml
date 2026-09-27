@@ -1,0 +1,72 @@
+captainVersion: 4
+services:
+  $$cap_appname:
+    image: webhippie/dst:latest
+    environment:
+      DST_CLUSTER_TOKEN: $$cap_dst_token
+      DST_NETWORK_CLUSTER_NAME: $$cap_dst_server_name
+      DST_NETWORK_CLUSTER_PASSWORD: $$cap_dst_password
+      DST_GAMEPLAY_MAX_PLAYERS: $$cap_dst_max_players
+      DST_GAMEPLAY_GAME_MODE: $$cap_dst_game_mode
+      DST_GAMEPLAY_PAUSE_WHEN_EMPTY: "true"
+      DST_SHARD_ENABLED: "true"
+      DST_SHARD_NAME: "Master"
+      DST_SHARD_ID: "1"
+      DST_SHARD_IS_MASTER: "true"
+      DST_SHARD_BIND_IP: "0.0.0.0"
+      DST_NETWORK_SERVER_PORT: "10999"
+      DST_SHARD_MASTER_PORT: "10888"
+      DST_STEAM_MASTER_SERVER_PORT: "27017"
+      DST_STEAM_AUTHENTICATION_PORT: "8767"
+    volumes:
+      - $$cap_appname-shared-data:/var/lib/game
+    caproverExtra:
+      notExposeAsWebApp: 'true'
+  $$cap_appname-caves:
+    image: webhippie/dst:latest
+    environment:
+      DST_CLUSTER_TOKEN: $$cap_dst_token
+      DST_SHARD_ENABLED: "true"
+      DST_SHARD_NAME: "Caves"
+      DST_SHARD_ID: "2"
+      DST_SHARD_IS_MASTER: "false"
+      DST_SHARD_MASTER_IP: $$cap_appname
+      DST_SHARD_MASTER_PORT: "10888"
+      DST_NETWORK_SERVER_PORT: "11000"
+      DST_STEAM_MASTER_SERVER_PORT: "27018"
+      DST_STEAM_AUTHENTICATION_PORT: "8768"
+      DST_OVERRIDE_PRESET: "Caves"
+    volumes:
+      - $$cap_appname-shared-data:/var/lib/game
+    caproverExtra:
+      notExposeAsWebApp: 'true'
+
+caproverOneClickApp:
+  variables:
+    - id: '$$cap_dst_token'
+      label: "Klei Cluster Token"
+      description: Generate a token by following this guide, https://servers4gamers.com/blog/how-to-create-token-for-a-dont-starve-together-server/
+      validRegex: "/.{5,}/"
+    - id: '$$cap_dst_server_name'
+      label: "Serveur name"
+      defaultValue: "CapRover DST"
+      description: "Name displayed in the server list."
+    - id: '$$cap_dst_password'
+      label: "Password"
+      defaultValue: ""
+      description: "Keep empty for public access"
+    - id: '$$cap_dst_max_players'
+      label: "Max player"
+      defaultValue: "6"
+      description: "Number of maximum slot."
+    - id: '$$cap_dst_game_mode'
+      label: "Game mode"
+      defaultValue: "survival"
+      description: "Options: survival, endless, wilderness."
+  instructions:
+    start: These are docker images for Don't Starve Together running on our SteamCMD image.
+    end: Don't Starve Together has been successfully deployed! Please wait until full steam download.
+  displayName: Don't Starve Together
+  isOfficial: false
+  description: Don't Starve is a survival game developed and published by Klei Entertainment.
+  documentation: See https://github.com/dockhippie/dst
