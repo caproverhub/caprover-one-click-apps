@@ -3,7 +3,7 @@ captainVersion: 4
 caproverOneClickApp:
   instructions:
     start: "Ce modèle installe un serveur dédié complet Don't Starve Together subdivisé en 2 instances (Master pour la surface et Caves pour le sous-sol)."
-    end: "Le déploiement est lancé ! ATTENTION : Vous devez impérativement ouvrir les ports UDP configurés (ex: 10999, 10888, 11000, 27017, 27018, 8767, 8768) sur le pare-feu externe de votre machine hôte pour permettre aux joueurs de se connecter."
+    end: "Le déploiement est lancé !"
   variables:
     - id: '$$cap_dst_token'
       label: "Klei Cluster Token"
@@ -28,7 +28,7 @@ caproverOneClickApp:
   description: "Serveur dédié Don't Starve Together avec gestion simultanée de la surface et des grottes via l'image dockhippie/dst."
 
 services:
-  $$cap_appname-master:
+  $$cap_appname:
     image: webhippie/dst:latest
     containerHttpPort: 10999
     notExposeAsWebApp: true
@@ -51,11 +51,6 @@ services:
       DST_STEAM_AUTHENTICATION_PORT: "8767"
     volumes:
       - $$cap_appname-shared-data:/var/lib/game
-    ports:
-      - "10999:10999"
-      - "10888:10888"
-      - "27017:27017"
-      - "8767:8767"
     caproverExtra:
       notExposeAsWebApp: 'true'
 
@@ -71,7 +66,7 @@ services:
       DST_SHARD_NAME: "Caves"
       DST_SHARD_ID: "2"
       DST_SHARD_IS_MASTER: "false"
-      DST_SHARD_MASTER_IP: $$cap_appname-master
+      DST_SHARD_MASTER_IP: $$cap_appname
       DST_SHARD_MASTER_PORT: "10888"
       DST_NETWORK_SERVER_PORT: "11000"
       DST_STEAM_MASTER_SERVER_PORT: "27018"
@@ -79,9 +74,5 @@ services:
       DST_OVERRIDE_PRESET: "Caves"
     volumes:
       - $$cap_appname-shared-data:/var/lib/game
-    ports:
-      - "11000:11000"
-      - "27018:27018"
-      - "8768:8768"
     caproverExtra:
       notExposeAsWebApp: 'true'
