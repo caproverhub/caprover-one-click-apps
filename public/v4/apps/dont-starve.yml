@@ -1,38 +1,7 @@
 captainVersion: 4
-
-caproverOneClickApp:
-  instructions:
-    start: "Ce modèle installe un serveur dédié complet Don't Starve Together subdivisé en 2 instances (Master pour la surface et Caves pour le sous-sol)."
-    end: "Le déploiement est lancé !"
-  variables:
-    - id: '$$cap_dst_token'
-      label: "Klei Cluster Token"
-      description: "Le jeton obligatoire obtenu via le portail officiel Klei."
-      validRegex: "/.{5,}/"
-    - id: '$$cap_dst_server_name'
-      label: "Nom du Serveur"
-      defaultValue: "Mon Serveur CapRover DST"
-      description: "Le nom affiché dans la liste des serveurs publics."
-    - id: '$$cap_dst_password'
-      label: "Mot de passe"
-      defaultValue: ""
-      description: "Laissez vide si vous souhaitez un accès public."
-    - id: '$$cap_dst_max_players'
-      label: "Joueurs max"
-      defaultValue: "6"
-      description: "Nombre de slots disponibles."
-    - id: '$$cap_dst_game_mode'
-      label: "Mode de jeu"
-      defaultValue: "survival"
-      description: "Options valides : survival, endless, wilderness."
-  description: "Serveur dédié Don't Starve Together avec gestion simultanée de la surface et des grottes via l'image dockhippie/dst."
-
 services:
   $$cap_appname:
     image: webhippie/dst:latest
-    containerHttpPort: 10999
-    notExposeAsWebApp: true
-    restart: always
     environment:
       DST_CLUSTER_TOKEN: $$cap_dst_token
       DST_NETWORK_CLUSTER_NAME: $$cap_dst_server_name
@@ -53,13 +22,8 @@ services:
       - $$cap_appname-shared-data:/var/lib/game
     caproverExtra:
       notExposeAsWebApp: 'true'
-
-  # --- SERVEUR GROTTES ---
   $$cap_appname-caves:
     image: webhippie/dst:latest
-    containerHttpPort: 11000
-    notExposeAsWebApp: true
-    restart: always
     environment:
       DST_CLUSTER_TOKEN: $$cap_dst_token
       DST_SHARD_ENABLED: "true"
@@ -76,3 +40,33 @@ services:
       - $$cap_appname-shared-data:/var/lib/game
     caproverExtra:
       notExposeAsWebApp: 'true'
+
+caproverOneClickApp:
+  variables:
+    - id: '$$cap_dst_token'
+      label: "Klei Cluster Token"
+      description: Generate a token by following this guide, https://servers4gamers.com/blog/how-to-create-token-for-a-dont-starve-together-server/
+      validRegex: "/.{5,}/"
+    - id: '$$cap_dst_server_name'
+      label: "Serveur name"
+      defaultValue: "CapRover DST"
+      description: "Name displayed in the server list."
+    - id: '$$cap_dst_password'
+      label: "Password"
+      defaultValue: ""
+      description: "Keep empty for public access"
+    - id: '$$cap_dst_max_players'
+      label: "Max player"
+      defaultValue: "6"
+      description: "Number of maximum slot."
+    - id: '$$cap_dst_game_mode'
+      label: "Game mode"
+      defaultValue: "survival"
+      description: "Options: survival, endless, wilderness."
+  instructions:
+    start: These are docker images for Don't Starve Together running on our SteamCMD image.
+    end: Don't Starve Together has been successfully deployed! Please wait until full steam download.
+  displayName: Don't Starve Together
+  isOfficial: false
+  description: Don't Starve is a survival game developed and published by Klei Entertainment.
+  documentation: See https://github.com/dockhippie/dst
