@@ -1,0 +1,28 @@
+captainVersion: 4
+services:
+    $$cap_appname:
+        image: ghcr.io/fclairamb/solidping:$$cap_solidping_version
+        volumes:
+            - $$cap_appname-data:/data
+        caproverExtra:
+            containerHttpPort: '4000'
+caproverOneClickApp:
+    variables:
+        - id: $$cap_solidping_version
+          label: SolidPing version
+          defaultValue: '0.41.0'
+          description: Check out the releases for the valid tags https://github.com/fclairamb/solidping/releases
+          validRegex: '/^([^\s^\/])+$/'
+    instructions:
+        start: |-
+            SolidPing is a self-hostable uptime monitoring platform: 40+ check types (HTTP, TCP, DNS, TLS, ICMP, SSH, SMTP, databases, MQTT and more), status pages, incidents and on-call escalation. It stores its data in SQLite in a persistent volume, no other service is needed.
+        end: |-
+            SolidPing is deployed and available at http://$$cap_appname.$$cap_root_domain
+
+            Sign in with admin@solidping.io / solidpass, you will be asked to change the password on the first login.
+
+            Once you enable HTTPS, add the environment variable SP_BASE_URL=https://$$cap_appname.$$cap_root_domain in the app config, so the links in notifications point to the right address.
+    displayName: SolidPing
+    isOfficial: true
+    description: Self-hostable uptime monitoring with 40+ check types, status pages and on-call escalation
+    documentation: Taken from https://docs.solidping.io
